@@ -2,7 +2,7 @@
 id: caution-as-evasion-loop
 name: Caution-as-Evasion Loop
 type: anti-pattern
-category: execution-discipline
+category: stalls-instead-of-acting
 problem: "The AI stalls instead of acting"
 intent_signals:
   - repeated requests for confirmation after a clear instruction

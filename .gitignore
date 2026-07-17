@@ -11,3 +11,4 @@ dist/
 # environment
 .env
 .env.*
+node_modules/

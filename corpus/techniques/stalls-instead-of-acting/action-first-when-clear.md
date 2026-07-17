@@ -2,7 +2,7 @@
 id: action-first-when-clear
 name: Action-First When Clear, Ask When Unclear
 type: practice
-category: execution-discipline
+category: stalls-instead-of-acting
 problem: "The AI stalls instead of acting"
 intent_signals:
   - the AI narrates what it is about to do instead of doing it
