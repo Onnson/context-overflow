@@ -2,7 +2,14 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "contextoverflow-mcp",
   "main": "src/index.ts",
-  "compatibility_date": "2025-09-01"
-  // Production route (wired in Phase 4, same zone as the Pages site):
-  // "routes": [{ "pattern": "contextoverflow.org/mcp*", "zone_name": "contextoverflow.org" }]
+  "compatibility_date": "2025-09-01",
+  "workers_dev": true,
+  "env": {
+    // Production: routed on the apex zone next to the Pages site; the
+    // workers.dev staging URL stays off. Deploy: npx wrangler deploy --env production
+    "production": {
+      "workers_dev": false,
+      "routes": [{ "pattern": "contextoverflow.org/mcp*", "zone_name": "contextoverflow.org" }]
+    }
+  }
 }

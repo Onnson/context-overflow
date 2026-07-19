@@ -4,7 +4,23 @@ The site is generated from `corpus/` at build time; nothing under
 `site/techniques/` is committed. The corpus validator runs as a pre-build
 gate inside `build.mjs` — a corpus or privacy violation fails the deploy.
 
-## Cloudflare Pages settings
+## Launch path A — direct upload (no dashboard, pure CLI)
+
+Build locally, upload the artifact; needs only a Pages-scoped API token:
+
+```sh
+cd site && npm ci && node build.mjs && bundle install && bundle exec jekyll build
+npx wrangler pages project create contextoverflow --production-branch main
+npx wrangler pages deploy _site --project-name contextoverflow
+# then attach the custom domain:
+npx wrangler pages domain add contextoverflow --domain contextoverflow.org   # (or via API/dashboard)
+```
+
+Re-deploys are a re-run of build + `pages deploy`. Git-integrated CI builds
+(path B below) can replace this later — connecting the GitHub repo requires
+a one-time dashboard authorization.
+
+## Launch path B — git-integrated Pages settings
 
 - **Framework preset:** None
 - **Root directory:** `/` (repository root — the build reads `corpus/` and `validator/`)
