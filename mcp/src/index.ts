@@ -1,6 +1,7 @@
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
+import { handleDashboard, type DashEnv } from "./dashboard.js";
 import { handleClassify } from "./landing-api.js";
-import { record, type CoEvent, type Env } from "./observability.js";
+import { record, type CoEvent } from "./observability.js";
 import { buildServer } from "./server.js";
 
 const SITE = "https://contextoverflow.org";
@@ -49,7 +50,7 @@ async function sniffInitialize(request: Request, observe: (e: CoEvent) => void):
 }
 
 export default {
-  async fetch(request: Request, env: Env): Promise<Response> {
+  async fetch(request: Request, env: DashEnv): Promise<Response> {
     const url = new URL(request.url);
     const origin = request.headers.get("Origin");
     const observe = (e: CoEvent) => record(env, request, e);
@@ -84,6 +85,10 @@ export default {
           },
         }
       );
+    }
+
+    if (url.pathname === "/_dash" && request.method === "GET") {
+      return handleDashboard(request, env);
     }
 
     if (url.pathname === "/classify") {
