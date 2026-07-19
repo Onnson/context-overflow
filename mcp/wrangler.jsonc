@@ -20,8 +20,7 @@
       ],
       "routes": [
         { "pattern": "contextoverflow.org/mcp*", "zone_name": "contextoverflow.org" },
-        { "pattern": "contextoverflow.org/classify", "zone_name": "contextoverflow.org" },
-        { "pattern": "contextoverflow.org/_dash*", "zone_name": "contextoverflow.org" }
+        { "pattern": "contextoverflow.org/classify", "zone_name": "contextoverflow.org" }
       ]
     }
   }
