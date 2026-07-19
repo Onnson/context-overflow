@@ -42,16 +42,28 @@ strong {
   margin: 0 auto;
 }
 
+// The human door carries most visitors — it gets the visual weight.
 .co-doors {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 3fr 2fr;
   gap: 1.5rem;
-  max-width: 66rem;
+  max-width: 70rem;
   margin: 0 auto;
   padding: 0 1rem;
 
   @media (max-width: 50rem) {
     grid-template-columns: 1fr;
+  }
+}
+
+.co-door:first-child {
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  textarea {
+    min-height: 7rem;
+    font-size: 1.05rem;
   }
 }
 
