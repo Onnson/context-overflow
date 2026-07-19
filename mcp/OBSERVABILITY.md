@@ -20,23 +20,23 @@ dual-written:
 Analytics Engine blob order: event, tool, outcome, category, technique,
 query, ua, country, clientName (blob1…blob9); double1 = 1; index1 = tool.
 
-## Dashboard (Cloudflare → Workers & Pages → contextoverflow-mcp-production → Logs → Query Builder)
+## Dashboard (Cloudflare → Workers & Pages → Observability → Queries)
 
-Saved queries have no API — create each once in the Query Builder and hit
-**Save Query**; they persist account-wide. The six that answer "who / how
-many / what":
+Six saved queries live in the Cloudflare dashboard itself, created via the
+Workers Observability API (`scripts/create-dashboard-queries.mjs` —
+idempotent, re-runnable with `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID`):
 
-1. **Calls by tool** — filter `co.event = tool_call`, group by `co.tool`,
-   visualize count over time.
-2. **Classification outcomes** — filter `co.event exists`, group by
-   `co.outcome` (watch the no_match rate — it's the corpus-growth signal).
-3. **Top problem categories** — filter `co.outcome = match`, group by
-   `co.category`.
-4. **Top techniques served** — filter `co.tool = get_technique OR
-   apply_technique`, group by `co.technique`.
-5. **Clients** — group by `co.clientName` (initialize events) and by `co.ua`.
-6. **What people ask** — filter `co.query exists`, table view of `co.query`,
-   `co.outcome`, `co.category`, newest first.
+`CO / Calls by tool` · `CO / Outcomes & no-match rate` (the no_match share
+is the corpus-growth signal) · `CO / Top problem categories` ·
+`CO / Techniques served` · `CO / Clients & countries` ·
+`CO / What people ask` (raw query log)
+
+Open any of them in the Queries tab; the Visualizations tab charts them.
+API note: the queries CRUD endpoints (`/accounts/{id}/workers/observability/
+queries`, GET/POST/PATCH/DELETE) are in Cloudflare's official OpenAPI schema
+and answer live, but are not rendered on the docs site — the docs show only
+the telemetry endpoints. `POST …/telemetry/query` with a `queryId` re-runs
+a saved query programmatically.
 
 ## Three-month trends (Analytics Engine SQL API)
 
