@@ -46,9 +46,8 @@ bundle exec jekyll serve            # preview at localhost:4000
 
 ## Domains
 
-- `contextoverflow.org` — landing and gateway: this site, plus the MCP
-  Worker routed at `contextoverflow.org/mcp*` on the same zone
-- `contextoverflow.info` — 301 redirect to `.org` (Cloudflare Bulk Redirect)
+- `contextoverflow.org` — the only domain: this site, plus the MCP Worker
+  routed at `contextoverflow.org/mcp*` and `/classify` on the same zone
 
 No analytics are configured, deliberately — none are added until everything
 is live.
