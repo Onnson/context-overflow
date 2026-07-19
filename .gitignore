@@ -19,3 +19,6 @@ site/techniques/
 # ruby
 vendor/
 .bundle/
+
+# generated mcp bundle
+mcp/src/generated/
