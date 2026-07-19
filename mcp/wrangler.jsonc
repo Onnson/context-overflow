@@ -9,7 +9,10 @@
     // workers.dev staging URL stays off. Deploy: npx wrangler deploy --env production
     "production": {
       "workers_dev": false,
-      "routes": [{ "pattern": "contextoverflow.org/mcp*", "zone_name": "contextoverflow.org" }]
+      "routes": [
+        { "pattern": "contextoverflow.org/mcp*", "zone_name": "contextoverflow.org" },
+        { "pattern": "contextoverflow.org/classify", "zone_name": "contextoverflow.org" }
+      ]
     }
   }
 }

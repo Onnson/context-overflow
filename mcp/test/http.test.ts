@@ -142,6 +142,51 @@ describe("streamable http endpoint", () => {
     expect(res.headers.get("access-control-allow-origin")).toBe("https://contextoverflow.org");
   });
 
+  describe("landing /classify endpoint", () => {
+    const classifyReq = (body: unknown) =>
+      SELF.fetch("https://example.com/classify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      });
+
+    it("returns a match with technique links", async () => {
+      const res = await classifyReq({ description: "I ask something simple and get a wall of text" });
+      expect(res.status).toBe(200);
+      const body = (await res.json()) as any;
+      expect(body.kind).toBe("match");
+      expect(body.category.slug).toBe("bloated-answers");
+      expect(body.techniques[0].url).toContain("https://contextoverflow.org/bloated-answers/");
+    });
+
+    it("returns two options on ambiguity", async () => {
+      const res = await classifyReq({
+        description: "it tells me I'm right even when I'm wrong and buries everything in walls of text",
+      });
+      const body = (await res.json()) as any;
+      expect(body.kind).toBe("ambiguous");
+      expect(body.options).toHaveLength(2);
+    });
+
+    it("returns the eight-problem menu on no match", async () => {
+      const res = await classifyReq({ description: "how do I bake sourdough bread" });
+      const body = (await res.json()) as any;
+      expect(body.kind).toBe("no_match");
+      expect(body.options).toHaveLength(8);
+    });
+
+    it("rejects empty and malformed bodies with 400, GET with 405", async () => {
+      expect((await classifyReq({ description: "" })).status).toBe(400);
+      const bad = await SELF.fetch("https://example.com/classify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: "{nope",
+      });
+      expect(bad.status).toBe(400);
+      expect((await SELF.fetch("https://example.com/classify")).status).toBe(405);
+    });
+  });
+
   // The behaviors below live in the SDK — pinned so an SDK upgrade that
   // changes any of them fails loudly here instead of in a client.
   describe("pinned SDK transport behaviors", () => {

@@ -21,3 +21,99 @@ strong {
 .co-theme-toggle {
   margin: 0.75rem 1rem;
 }
+
+// Landing page: two doors, side by side, no sidebar.
+.co-landing-head {
+  max-width: 66rem;
+  margin: 2.5rem auto 1.5rem;
+  padding: 0 1rem;
+  text-align: center;
+
+  h1 {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+  }
+}
+
+.co-tagline {
+  font-size: 1.05rem;
+  opacity: 0.85;
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.co-doors {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  max-width: 66rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  @media (max-width: 50rem) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.co-door {
+  border: 1px solid rgba(128, 128, 128, 0.35);
+  border-radius: 0.5rem;
+  padding: 1.25rem 1.5rem;
+
+  > h2:first-child {
+    margin-top: 0.25rem;
+  }
+
+  details {
+    margin: 0.5rem 0;
+
+    summary {
+      cursor: pointer;
+    }
+  }
+}
+
+.co-classify {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin: 0.75rem 0;
+
+  textarea {
+    width: 100%;
+    font: inherit;
+    padding: 0.6rem;
+    border: 1px solid rgba(128, 128, 128, 0.5);
+    border-radius: 0.375rem;
+    background: transparent;
+    color: inherit;
+    resize: vertical;
+  }
+
+  button {
+    align-self: flex-start;
+  }
+}
+
+.co-classify-result {
+  min-height: 1rem;
+
+  .co-borders {
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+}
+
+.co-categories {
+  max-width: 66rem;
+  margin: 2rem auto 3rem;
+  padding: 0 1rem;
+}
+
+.co-visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

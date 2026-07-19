@@ -1,4 +1,5 @@
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
+import { handleClassify } from "./landing-api.js";
 import { buildServer } from "./server.js";
 
 const SITE = "https://contextoverflow.org";
@@ -67,6 +68,16 @@ export default {
           },
         }
       );
+    }
+
+    if (url.pathname === "/classify") {
+      if (request.method === "POST") {
+        return withHeaders(await handleClassify(request), corsHeaders(origin));
+      }
+      return new Response("POST JSON {description} to classify.", {
+        status: 405,
+        headers: { Allow: "POST, OPTIONS", ...corsHeaders(origin) },
+      });
     }
 
     if (request.method === "GET") return Response.redirect(SITE, 302);
