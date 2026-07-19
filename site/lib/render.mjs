@@ -16,6 +16,7 @@ export function renderTechnique(entry, category, edges, byId, categoryBySlug) {
 
   const lines = [
     "---",
+    "layout: default",
     `title: ${JSON.stringify(fm.name)}`,
     `parent: ${JSON.stringify(category.title)}`,
     `permalink: /${category.slug}/${fm.id}/`,
@@ -110,6 +111,7 @@ function relatedBlock(byLabel, byId, categoryBySlug) {
 export function renderCategory(category, navOrder) {
   return [
     "---",
+    "layout: default",
     `title: ${JSON.stringify(category.title)}`,
     `nav_order: ${navOrder}`,
     "has_children: true",

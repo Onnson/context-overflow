@@ -14,12 +14,6 @@ heading_anchors: true
 footer_content: >-
   Corpus licensed CC BY-NC-ND 4.0 · Site code licensed Elastic License 2.0
 
-defaults:
-  - scope:
-      path: ""
-    values:
-      layout: default
-
 exclude:
   - build.mjs
   - lib/

@@ -1,0 +1,47 @@
+<script>
+  // Resolve the color scheme before first paint: saved choice wins, then the
+  // OS preference. Swaps the just-the-docs stylesheet emitted above.
+  (function () {
+    var LINK_RE = /just-the-docs-(default|light|dark)\.css/;
+
+    function schemeLink() {
+      var links = document.querySelectorAll('link[rel="stylesheet"]');
+      for (var i = 0; i < links.length; i++) {
+        var href = links[i].getAttribute("href") || "";
+        if (LINK_RE.test(href) && links[i].id !== "jtd-head-nav-stylesheet") {
+          return links[i];
+        }
+      }
+      return null;
+    }
+
+    window.coApplyTheme = function (theme) {
+      var link = schemeLink();
+      if (link) {
+        var target = theme === "dark" ? "dark" : "default";
+        link.href = link
+          .getAttribute("href")
+          .replace(LINK_RE, "just-the-docs-" + target + ".css");
+      }
+      var headNav = document.getElementById("jtd-head-nav-stylesheet");
+      if (headNav) headNav.disabled = theme === "dark";
+      document.documentElement.setAttribute("data-co-theme", theme);
+    };
+
+    window.coSetTheme = function (theme) {
+      window.coApplyTheme(theme);
+      try {
+        localStorage.setItem("co-theme", theme);
+      } catch (e) {}
+    };
+
+    var saved = null;
+    try {
+      saved = localStorage.getItem("co-theme");
+    } catch (e) {}
+    var prefersDark =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+    window.coApplyTheme(saved || (prefersDark ? "dark" : "light"));
+  })();
+</script>
