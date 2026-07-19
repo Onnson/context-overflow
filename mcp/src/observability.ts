@@ -19,7 +19,7 @@ export interface CoEvent {
 }
 
 export interface Env {
-  CO_EVENTS?: AnalyticsEngineDataset;
+  ANALYTICS_ENGINE?: AnalyticsEngineDataset;
 }
 
 const QUERY_LIMIT = 500;
@@ -35,7 +35,7 @@ export function record(env: Env, request: Request, e: CoEvent): void {
     console.log(JSON.stringify({ co: enriched }));
   } catch {}
   try {
-    env.CO_EVENTS?.writeDataPoint({
+    env.ANALYTICS_ENGINE?.writeDataPoint({
       blobs: [
         enriched.event,
         enriched.tool ?? "",

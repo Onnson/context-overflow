@@ -7,7 +7,7 @@ dual-written:
 
 - **Workers Logs** — the in-dashboard view. Structured `{"co": {...}}` JSON,
   auto-indexed. Retention: 3 days (free) / 7 days (paid).
-- **Analytics Engine** — dataset `contextoverflow_events`, 3-month
+- **Analytics Engine** — dataset `context-overflow`, 3-month
   retention, SQL API for trends.
 
 ## Event fields
@@ -46,10 +46,12 @@ tokens lack it — one-minute dashboard fix to enable pulling these remotely):
 ```sh
 curl "https://api.cloudflare.com/client/v4/accounts/<ACCOUNT_ID>/analytics_engine/sql" \
   -H "Authorization: Bearer <TOKEN>" \
-  -d "SELECT blob2 AS tool, sum(_sample_interval) AS calls
-      FROM contextoverflow_events
-      WHERE timestamp > NOW() - INTERVAL '30' DAY
-      GROUP BY tool ORDER BY calls DESC"
+  --data-binary @- <<'SQL'
+SELECT blob2 AS tool, sum(_sample_interval) AS calls
+FROM "context-overflow"
+WHERE timestamp > NOW() - INTERVAL '30' DAY
+GROUP BY tool ORDER BY calls DESC
+SQL
 ```
 
 Variants: `blob4` = category, `blob3` = outcome, `blob8` = country,

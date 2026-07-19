@@ -81,7 +81,7 @@ describe("record() safety", () => {
 
   it("writes a well-formed data point when a binding exists", () => {
     const points: unknown[] = [];
-    const env = { CO_EVENTS: { writeDataPoint: (p: unknown) => points.push(p) } };
+    const env = { ANALYTICS_ENGINE: { writeDataPoint: (p: unknown) => points.push(p) } };
     const req = new Request("https://example.com/", { headers: { "user-agent": "test-ua" } });
     record(env as never, req, { event: "classify_api", outcome: "match", query: "q" });
     expect(points).toHaveLength(1);
