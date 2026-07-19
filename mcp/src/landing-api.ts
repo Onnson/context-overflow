@@ -1,5 +1,6 @@
 import { classify } from "./classify.js";
 import { CORPUS, categoryBySlug } from "./corpus.js";
+import type { CoEvent } from "./observability.js";
 
 /**
  * JSON endpoint behind the landing page's prompt box — the same
@@ -14,7 +15,10 @@ const categoryInfo = (slug: string) => {
   return { slug, problem: c.problem, url: `${SITE}/${slug}/` };
 };
 
-export async function handleClassify(request: Request): Promise<Response> {
+export async function handleClassify(
+  request: Request,
+  observe?: (e: CoEvent) => void
+): Promise<Response> {
   let description = "";
   try {
     const body = (await request.json()) as { description?: unknown };
@@ -27,6 +31,14 @@ export async function handleClassify(request: Request): Promise<Response> {
   }
 
   const result = classify(description);
+  observe?.({
+    event: "classify_api",
+    outcome: result.kind,
+    category:
+      result.kind === "match" ? result.category : result.kind === "ambiguous" ? `${result.a}|${result.b}` : undefined,
+    technique: result.kind === "match" ? result.ranked[0]?.entry.id : undefined,
+    query: description,
+  });
 
   if (result.kind === "match") {
     return Response.json({

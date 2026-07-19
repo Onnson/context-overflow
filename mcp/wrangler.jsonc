@@ -4,11 +4,21 @@
   "main": "src/index.ts",
   "compatibility_date": "2025-09-01",
   "workers_dev": true,
+  "observability": { "enabled": true },
+  // Uncomment after enabling Analytics Engine in the dashboard (error 10089):
+  // "analytics_engine_datasets": [
+  //   { "binding": "CO_EVENTS", "dataset": "contextoverflow_events" }
+  // ],
   "env": {
     // Production: routed on the apex zone next to the Pages site; the
     // workers.dev staging URL stays off. Deploy: npx wrangler deploy --env production
+    // Bindings are NOT inherited into envs — keep these in sync with top level.
     "production": {
       "workers_dev": false,
+      "observability": { "enabled": true },
+      // "analytics_engine_datasets": [
+      //   { "binding": "CO_EVENTS", "dataset": "contextoverflow_events" }
+      // ],
       "routes": [
         { "pattern": "contextoverflow.org/mcp*", "zone_name": "contextoverflow.org" },
         { "pattern": "contextoverflow.org/classify", "zone_name": "contextoverflow.org" }

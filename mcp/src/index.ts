@@ -1,5 +1,6 @@
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { handleClassify } from "./landing-api.js";
+import { record, type CoEvent, type Env } from "./observability.js";
 import { buildServer } from "./server.js";
 
 const SITE = "https://contextoverflow.org";
@@ -34,10 +35,24 @@ function withHeaders(response: Response, headers: Record<string, string>): Respo
   return out;
 }
 
+/** Sniffs an MCP initialize call for the connecting client's name. */
+async function sniffInitialize(request: Request, observe: (e: CoEvent) => void): Promise<void> {
+  try {
+    const body = (await request.clone().json()) as {
+      method?: string;
+      params?: { clientInfo?: { name?: string } };
+    };
+    if (body?.method === "initialize") {
+      observe({ event: "initialize", clientName: body.params?.clientInfo?.name ?? "" });
+    }
+  } catch {}
+}
+
 export default {
-  async fetch(request: Request): Promise<Response> {
+  async fetch(request: Request, env: Env): Promise<Response> {
     const url = new URL(request.url);
     const origin = request.headers.get("Origin");
+    const observe = (e: CoEvent) => record(env, request, e);
 
     if (origin && !originAllowed(origin)) {
       return new Response("Forbidden origin", { status: 403 });
@@ -48,7 +63,8 @@ export default {
 
     if (url.pathname === "/mcp" || url.pathname === "/mcp/") {
       if (request.method === "POST") {
-        const server = buildServer();
+        await sniffInitialize(request, observe);
+        const server = buildServer(observe);
         const transport = new WebStandardStreamableHTTPServerTransport({
           sessionIdGenerator: undefined,
           enableJsonResponse: true,
@@ -72,7 +88,7 @@ export default {
 
     if (url.pathname === "/classify") {
       if (request.method === "POST") {
-        return withHeaders(await handleClassify(request), corsHeaders(origin));
+        return withHeaders(await handleClassify(request, observe), corsHeaders(origin));
       }
       return new Response("POST JSON {description} to classify.", {
         status: 405,
