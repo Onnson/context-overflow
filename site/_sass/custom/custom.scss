@@ -1,0 +1,23 @@
+// Slightly heavier type across the whole site.
+body {
+  font-weight: 500;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.site-title {
+  font-weight: 700;
+}
+
+strong {
+  font-weight: 800;
+}
+
+// Dark-mode toggle button, rendered in the sidebar footer.
+.co-theme-toggle {
+  margin: 0.75rem 1rem;
+}

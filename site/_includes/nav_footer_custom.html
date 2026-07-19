@@ -1,0 +1,18 @@
+<button type="button" class="btn co-theme-toggle" id="co-theme-toggle"></button>
+<script>
+  (function () {
+    var btn = document.getElementById("co-theme-toggle");
+    function setLabel() {
+      var dark =
+        document.documentElement.getAttribute("data-co-theme") === "dark";
+      btn.textContent = dark ? "Switch to light mode" : "Switch to dark mode";
+    }
+    btn.addEventListener("click", function () {
+      var dark =
+        document.documentElement.getAttribute("data-co-theme") === "dark";
+      window.coSetTheme(dark ? "light" : "dark");
+      setLabel();
+    });
+    setLabel();
+  })();
+</script>

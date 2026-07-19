@@ -11,3 +11,14 @@ dist/
 # environment
 .env
 .env.*
+node_modules/
+
+# generated site pages
+site/techniques/
+
+# ruby
+vendor/
+.bundle/
+
+# generated mcp bundle
+mcp/src/generated/

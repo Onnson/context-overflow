@@ -1,0 +1,8 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "contextoverflow-mcp",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-09-01"
+  // Production route (wired in Phase 4, same zone as the Pages site):
+  // "routes": [{ "pattern": "contextoverflow.org/mcp*", "zone_name": "contextoverflow.org" }]
+}

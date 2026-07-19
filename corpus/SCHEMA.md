@@ -17,7 +17,7 @@ machine can serve it.
 id: action-first-when-clear        # kebab-case, unique, matches filename
 name: Action-First When Clear, Ask When Unclear
 type: practice                     # practice | anti-pattern | protocol
-category: execution-discipline     # one of the taxonomy categories
+category: stalls-instead-of-acting # one of the taxonomy categories below
 problem: "The AI stalls instead of acting"   # the problem as the human experiences it
 intent_signals:                    # phrases/behaviors that indicate this entry applies;
   - repeated confirmation requests after a clear instruction   # used by MCP classify/find
@@ -35,6 +35,22 @@ inheritable: true                  # true = generalizes beyond one specific huma
                                    # only inheritable entries belong in this corpus
 ---
 ```
+
+## Taxonomy
+
+Categories are named after the problem as the human experiences it. Every
+entry lives in exactly one:
+
+| category | the problem |
+|---|---|
+| `lost-the-thread` | "My AI forgets everything between sessions" |
+| `doing-my-thinking` | "I'm outsourcing my thinking and getting dumber" |
+| `confidently-wrong` | "My AI states things that turn out to be false" |
+| `agrees-with-everything` | "My AI tells me I'm right even when I'm not" |
+| `stalls-instead-of-acting` | "The AI stalls instead of acting" |
+| `bloated-answers` | "I ask something simple and get a wall of text" |
+| `starting-blind` | "It starts producing before it understands the task" |
+| `problem-too-big` | "The task is too big and it (or I) can't hold it" |
 
 ## Body sections — all nine, in this order, none skipped
 
