@@ -12,7 +12,10 @@ import { createHash } from "node:crypto";
  * the term is already present, i.e., when the leak already exists).
  *
  * There is deliberately no allowlist: a legitimate collision is resolved by
- * rewording, never by exempting.
+ * rewording, never by exempting — with one deliberate, owner-ruled carve-out:
+ * the public creator credit in the site footer may carry specific identity
+ * digests, passed per-file by the caller. Every other digest stays blocked
+ * everywhere, including in that file.
  */
 const BLOCKED_DIGESTS = new Set([
   "01979b66ee1794c473f53cafff0889e714aac28b2515e3572072424b919634f3",
@@ -46,16 +49,20 @@ const BLOCKED_DIGESTS = new Set([
 const sha256 = (s: string) => createHash("sha256").update(s).digest("hex");
 
 /** Returns a hit description per blocked term found in the text. */
-export function scanForBlocked(text: string): string[] {
+export function scanForBlocked(text: string, exempt?: Set<string>): string[] {
   const tokens = text.toLowerCase().match(/[a-z0-9]+/g) ?? [];
   const hits = new Set<string>();
+  const blocked = (gram: string) => {
+    const digest = sha256(gram);
+    return BLOCKED_DIGESTS.has(digest) && !exempt?.has(digest);
+  };
   for (let i = 0; i < tokens.length; i++) {
-    if (BLOCKED_DIGESTS.has(sha256(tokens[i]))) {
+    if (blocked(tokens[i])) {
       hits.add(`blocked term → "${tokens[i]}"`);
     }
     if (i + 1 < tokens.length) {
       const bigram = `${tokens[i]} ${tokens[i + 1]}`;
-      if (BLOCKED_DIGESTS.has(sha256(bigram))) {
+      if (blocked(bigram)) {
         hits.add(`blocked term → "${bigram}"`);
       }
     }

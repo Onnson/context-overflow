@@ -13,8 +13,10 @@ can pull the technique you just learned, mid-conversation, and tell you it's
 doing so in words you recognize.
 
 **Endpoint:** `https://contextoverflow.org/mcp`
-— free, no account, no API key. Your conversations are not stored or
-analyzed; the server is stateless and holds nothing between requests.
+— free, no account, no API key. The server is stateless — it holds nothing
+between requests. Questions sent for matching are collected anonymously
+(no accounts, no identity) and used to grow the library and understand how
+people and AI collaborate; the rest of your conversation is never seen.
 
 ## What your agent gets
 

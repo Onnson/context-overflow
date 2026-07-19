@@ -73,8 +73,17 @@ for (const [id, fm] of entries) {
 }
 
 // Pass 3 — privacy blocklist over every public file in the repository.
+// One owner-ruled carve-out: the site footer's creator credit may carry
+// exactly these identity digests; everything else stays blocked there too.
+const FOOTER_CREDIT_PATH = "site/_includes/footer_custom.html";
+const FOOTER_IDENTITY_DIGESTS = new Set([
+  "76891d6fef4278faeebbcacde7f0ae391e6b5911cd004fe5e3c62649417545cf",
+  "27ce135e3b780a2fd22737bd06d9ba95257c5f909b432b0bce5789812fcda80a",
+  "ad08e9c78fc012753819743cdb922698880527a8b79287efc35c9d25e7e714a7",
+]);
 for (const file of walk(ROOT)) {
-  const hits = scanForBlocked(readFileSync(file, "utf8"));
+  const exempt = relative(ROOT, file) === FOOTER_CREDIT_PATH ? FOOTER_IDENTITY_DIGESTS : undefined;
+  const hits = scanForBlocked(readFileSync(file, "utf8"), exempt);
   for (const hit of hits) fail(file, hit);
 }
 

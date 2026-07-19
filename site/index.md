@@ -8,7 +8,8 @@ permalink: /
 <div class="co-landing-head">
   <h1>ContextOverflow</h1>
   <p class="co-tagline">Describe what your AI keeps getting wrong — get the named technique
-  that fixes it. Free, no login, nothing stored.</p>
+  that fixes it. Learn it, teach it to your AI, get better together.
+  Free, no login.</p>
 </div>
 
 <section class="co-human" markdown="1">
@@ -25,6 +26,9 @@ is enough. No jargon needed.
   <button type="submit" class="btn btn-primary">Find the technique</button>
 </form>
 <div id="co-classify-result" class="co-classify-result" aria-live="polite"></div>
+<p class="co-transparency">Questions asked here are collected anonymously — no account,
+no identity — and used to grow the library and understand how people and AI
+think together.</p>
 
 ### Or pick the complaint that sounds most like yours
 
@@ -46,7 +50,9 @@ prompt you'll know how to build, not just paste.
 One more thing, and it's the unusual part: your AI assistant can learn these
 same techniques, under the same names. You read *Self-Ask Before Delegating*
 here; mid-task, your assistant says *"breaking this into its sub-questions
-before answering"* — and you know exactly what it's doing.
+before answering"* — and you know exactly what it's doing. That's the premise
+of this whole place: not a smarter AI, not a dependent human — the pair,
+thinking better together.
 
 </section>
 
