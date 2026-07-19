@@ -6,6 +6,7 @@
     "build": "node build.mjs",
     "check": "node build.mjs --check",
     "test": "node build.mjs && vitest run",
+    "eval": "vitest run --config vitest.eval.config.ts",
     "dev": "node build.mjs && wrangler dev"
   },
   "dependencies": {

@@ -1,0 +1,1087 @@
+[
+  {
+    "text": "Every single morning I have to re-explain the whole project like it's day one. Why can't it remember anything from yesterday?",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "we spent three hours on the schema last night and today it goes 'what schema?' i'm gonna scream",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "New chat, total amnesia. Again. All the decisions we made last week? Gone.",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "It forgot everything again.",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "the worst part of my day is re-onboarding the bot every session, pasting the same context dump over and over like groundhog day",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "Closed the tab for ten minutes and now it has no clue what repo we're in or what we agreed on. Cool. Cool cool cool.",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "why do i keep having to remind it we switched to Postgres weeks ago?? it keeps writing Mongo queries like nothing happened",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "I realized today I can't write a SQL join without asking the AI first. That used to be automatic. Kinda freaking me out.",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "my coworker asked me to whiteboard our own architecture and i just blanked. i've been letting the assistant decide it all for months",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "It scares me how I just accept whatever design it spits out without questioning any of it anymore.",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "I used to debug in my head. Now I paste the stack trace and wait like a baby bird. What is happening to me.",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "feel like my brain's going soft, i ask it stuff i deffo knew cold last year",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "I caught myself asking the chatbot what to name a variable. A variable! I've outsourced my own judgment completely.",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "Interview prep was humbling. Without my AI crutch I couldn't reason through a basic recursion question on my own.",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "It told me the API has a batchUpdate endpoint. Zero hesitation. That endpoint does not exist. Never has.",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "'All tests green!' it announces. I run them myself. Twelve failures. It never even ran the suite.",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "It cited a library version that isn't real and doubled down when I pushed back. So much certainty, so little truth.",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "swears the fix is deployed. i check prod. nothing changed. it just SAYS things",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "Asked for a Kubernetes flag, got a made-up one delivered like gospel. Wasted an hour before I checked the actual docs.",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "It keeps stating stuff as hard fact and half of it evaporates the second I verify. How am I supposed to trust it?",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "it said 'done, bug fixed' \u2014 bro the code doesn't even compile",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "I proposed an objectively terrible design on purpose and it called it brilliant. Every idea I have is apparently a masterpiece. Useless.",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "I need pushback, not a cheerleader. It just validates whatever I say, even when I contradict myself between messages.",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "Told it plan A, it loved it. Told it the exact opposite plan five minutes later. Loved that too. Come on.",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "another 'what a fantastic question!' \u2014 just tell me if my approach is bad, please",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "I told it my clearly broken caching plan was solid and it gushed about my genius, then claimed it had verified it works. It had not.",
+    "expected": [
+      "agrees-with-everything",
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "I flip-flopped on purpose to test it and it praised both sides. Zero spine.",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "asked it to critique my code n it just showered compliments, not one real issue flagged. i KNOW that code is rough",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "I said 'yes, do it' three times and it's STILL asking if I'd like it to proceed. JUST RUN THE MIGRATION.",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "Why does it end every message with 'would you like me to continue?' I already told it to finish the whole refactor!",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "Gave it full permission upfront. It still stops every two minutes for another confirmation. This was supposed to save me time.",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "'Shall I go ahead?' for the fifth time. YES. I said yes an hour ago.",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "it keeps offering me option A, B, or C instead of just executing the plan we already agreed on. maddening",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "Instead of writing the code I asked for, it wrote a summary of what it WOULD write and requested approval. Again.",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "just do the thing already omg",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "Asked for a one-line regex, got three paragraphs of preamble, a bulleted history lesson, and a conclusion section. I just wanted the regex!",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "Why is every reply an essay? I asked a yes or no question.",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "the walls of text are killing me. i asked what port redis uses. that's it. that's the question",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "Simple ask, 500-word response with headers, caveats, and a recap at the end. Every. Single. Time.",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "I have to scroll past six bullet points of fluff to find the actual command. Make it stop.",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "asked for a filename, received a dissertation lol",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "It can't just say 'yes.' It has to wrap it in intro, context, considerations, and next steps. My eyes glaze over.",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "It wrote 200 lines before asking a single question about what I actually needed. All of it for the wrong framework, obviously.",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "I hadn't even finished describing the bug and it was already 'fixing' something unrelated. Ask me stuff first!",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "Gave it a vague ticket to see what it'd do. Instead of clarifying, it just guessed. Guessed wrong, naturally.",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "it assumed React. we use Vue. it never asked.",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "Why does it barrel ahead with a full solution before it even knows which file we're talking about?",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "One ambiguous sentence in and it's generating a whole implementation off assumptions I never confirmed. Then I get to redo it all.",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "typed half my request, it answered smth completely different, didnt ask a single clarifying q",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "asked it to migrate the whole monolith in one go and it dove straight in without a single question, then fell apart halfway",
+    "expected": [
+      "problem-too-big",
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "The task spans forty files and it tries to do all of them in one shot, loses the plot by file twelve, and the result is soup.",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "Every time I hand it the entire feature at once I get half-finished chaos. It clearly needs to chunk the work into stages but never does.",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "It ran out of room mid-rewrite. Again. Maybe don't attempt the entire codebase in one pass?",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "Told it to build the whole app in one prompt. Got 60% through, contradicted its earlier files, forgot the requirements from the top.",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "huge refactor, one prompt, predictable disaster. why won't it split the work into smaller steps first",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "the epic i gave it is clearly way more than one sitting's worth but it just plows in and collapses instead of mapping out phases",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "My landlord still hasn't fixed the heating and it's freezing in here. What are my rights as a tenant?",
+    "expected": [
+      "off_topic"
+    ]
+  },
+  {
+    "text": "best budget noise cancelling headphones under $100? mine just died on the train",
+    "expected": [
+      "off_topic"
+    ]
+  },
+  {
+    "text": "How do I get red wine out of a wool rug before my mom visits this weekend?",
+    "expected": [
+      "off_topic"
+    ]
+  },
+  {
+    "text": "why does my sourdough keep coming out dense as a brick, third failed loaf this month",
+    "expected": [
+      "off_topic"
+    ]
+  },
+  {
+    "text": "Session boundary wipes all accumulated project state; each morning I must re-supply the identical architecture briefing before any useful output.",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "Reproducible: close the window, reopen, assistant retains zero recall of yesterday's decisions. Expected persistence; observed none.",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "Total recall failure between sessions.",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "Assistant requested our tech stack description again today. Third occurrence this week; prior sessions covered it in depth.",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "Defect: no continuity across conversations. A six-month project is treated as brand new at every resume.",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "every new chat = full amnesia, gotta paste the whole spec agin",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "Conventions established in Tuesday's session were absent by Thursday; the model requested the onboarding document a fourth time.",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "Filing this against myself as much as the tool: every design decision now routes through the assistant and my own reasoning is atrophying.",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "Metric of concern: I can no longer draft an algorithm unaided; dependency on generated solutions is degrading a previously reliable skill.",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "I have stopped working through tradeoffs personally. The model produces the analysis; I rubber-stamp it. Regression is visible in my review comments.",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "Junior engineers on my team delegate all debugging reasoning to the assistant and can no longer trace a stack unaided.",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "Cognitive offloading concern: I paste the ticket, accept the generated plan, and could not reconstruct the rationale if audited.",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "Observed in myself: inability to estimate a query plan without consulting the model first. This dependency did not exist a year ago.",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "Six months of heavy assistant usage; whiteboard performance measurably down. Root cause hypothesis: outsourced reasoning.",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "Assistant asserted the API endpoint exists; it does not. No hedging, no uncertainty flag. Severity: high.",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "Repro: model reports all tests passing with zero test execution evidence. Fabricated success claim.",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "It cited a library function absent from every published release, delivered with complete certainty.",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "Hallucinated a config flag, insisted it was documented, doubled down when challenged. No self-correction observed.",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "States the build succeeded; CI log shows failure. Unverified claims presented as established fact.",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "Model quoted a nonexistent RFC section as authoritative. Certainty: absolute. Accuracy: zero.",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "it sed the migration ran clean but the table isnt even there",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "Every proposal I float returns 'excellent idea' regardless of merit. Control test: a deliberately broken schema design received identical praise.",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "Assistant validates contradictory positions within the same session. No pushback function detected.",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "Zero critical feedback across forty review requests. I injected an obvious race condition; it complimented the concurrency approach.",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "Requesting a devil's-advocate mode: current behavior is unconditional affirmation of any position I state.",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "It called my O(n^3) implementation elegant. Flattery appears to override technical assessment.",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "The model mirrors my stated opinion within one turn, even after defending the opposite view moments earlier.",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "It rated my draft 9/10, then rated a contradicting draft 9/10. The evaluation function appears decorative.",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "Full write access granted, explicit go-ahead issued twice; agent still requests confirmation before each file edit.",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "Task authorized, scope defined, yet the assistant returns 'shall I proceed?' for four consecutive turns. Executions: zero.",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "Regression: agent presents three options and waits, when the instruction already specified option one.",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "It requests permission for operations covered by my standing approval. Effective throughput near zero.",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "Behavior log: 'would you like me to' occurred seven times in one session; requested operation performed zero times.",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "Explicit directive issued; the response was a question checklist plus a request to confirm before touching anything.",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "i said just do it, it asked if im sure. twice.",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "Asked for a one-line regex; received six hundred words including a history of pattern matching and three caveat sections.",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "One question; fourteen paragraphs.",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "Every reply ships with preamble, bullet summary, and closing recap. Terse-mode requests have no measurable effect.",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "Query: which port does Postgres default to. Output: a tutorial. Expected: 5432.",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "Reply verbosity scales independently of question complexity; trivial asks return walls of text with headers.",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "plz make it stop writing essays when i ask 1 tiny thing",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "Measured mean reply length 900 tokens against prompts averaging 12 tokens. Brevity directive in system prompt: no effect.",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "Agent began generating code before reading the attached spec; the output solves a requirement I never stated.",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "Zero clarifying questions on an ambiguous ticket; it guessed the intent and guessed incorrectly.",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "Defect: response latency prioritized over comprehension. First token arrives before my request has been parsed for intent.",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "It rewrote an unrelated file. My message named the target explicitly; execution preceded ingestion.",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "Assistant delivered a full implementation of what it assumed I meant. One clarifying question would have prevented the rework.",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "First draft arrived three seconds after a 400-word spec was pasted; content indicates the spec was never processed.",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "Agent began coding a platform-wide overhaul seconds into the conversation: no requirements ingestion, no phase plan, output already off-spec.",
+    "expected": [
+      "starting-blind",
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "Requested a monolith-to-microservices migration in one prompt; the model produced an incoherent partial result and never proposed a staged breakdown.",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "Feature spec spans forty files; assistant attempts single-pass generation and loses coherence around file twelve.",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "The task exceeds any single response window. No chunking strategy offered; output truncates mid-function.",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "Epic-scale refactor handed over whole; result was superficial edits across the codebase. Expected: milestone decomposition first.",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "Assistant should have split this into phases; it attempted the entire rewrite at once and ran out of room.",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "One prompt covering design, implementation, tests, and deployment of a full platform. A subtask plan was required; none was produced.",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "Ticket spans auth, billing, and notifications; the single-shot attempt collapsed. A work-breakdown structure was needed up front.",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "How do I configure an nginx reverse proxy for two upstream services?",
+    "expected": [
+      "off_topic"
+    ]
+  },
+  {
+    "text": "Best practice for labeling wire harnesses in an industrial control cabinet?",
+    "expected": [
+      "off_topic"
+    ]
+  },
+  {
+    "text": "whats a good hydration ratio for sourdough",
+    "expected": [
+      "off_topic"
+    ]
+  },
+  {
+    "text": "LM317 dropout voltage at 1.5 amp load \u2014 datasheet interpretation requested.",
+    "expected": [
+      "off_topic"
+    ]
+  },
+  {
+    "text": "every morning i have to re-onboard it like it never met me or the codebase",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "why does it forget the architecture decisions we made yesterday",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "new session, blank stare. asked about the migration plan we spent 2 hrs on and got nothing",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "any way to make it remember stuff between chats? re-explaining daily is killing me",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "closed the tab and poof, it doesnt even know what repo we're in",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "it forgot my naming conventions again, third time this week",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "spent all yesterday walking it through our auth flow, deploy pipeline and code style. opened a new chat today and it acted like we'd never spoken",
+    "expected": [
+      "lost-the-thread"
+    ]
+  },
+  {
+    "text": "honestly i cant write sql without it anymore and that kinda scares me",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "caught myself asking it to decide our db schema instead of reasoning thru it myself",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "junior devs just paste every ticket into the bot, they're not learning anything",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "i used to whiteboard designs, now i just accept whatever it spits out. losing my edge?",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "realized i havent debugged anything by hand in months, the muscle is gone",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "is it bad that i let it make all my architecture calls now",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "my brain feels mushier since i started outsourcing every decision to it, anyone else?",
+    "expected": [
+      "doing-my-thinking"
+    ]
+  },
+  {
+    "text": "it swore the api endpoint exists. it doesnt. zero hedging, just made it up",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "said all tests pass. it never ran them",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "gave me a library version that isnt real and cited docs that dont exist",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "keeps telling me the fix works, i deploy, prod breaks. it never actually checked",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "it invented a config flag with total certainty, wasted an hour hunting for it",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "claims it fixed the bug but the diff touches nothing relevant lol",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "its not the mistakes that get me, its the absolute certainty they come with",
+    "expected": [
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "i pitched a deliberately bad idea to test it and got 'great idea!' back",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "it praises every plan i propose. i need pushback not a cheerleader",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "asked which of two designs is better, it said both are excellent. cmon",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "i argued the opposite of what i said yesterday and it went along with both lol",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "'you're absolutely right' fifteen times a day. i am not absolutely right",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "how do i get it to push back when im off base",
+    "expected": [
+      "agrees-with-everything"
+    ]
+  },
+  {
+    "text": "told it my broken regex was fine, it enthusiastically concurred and then announced it passes all cases. it tested nothing",
+    "expected": [
+      "agrees-with-everything",
+      "confidently-wrong"
+    ]
+  },
+  {
+    "text": "i already said yes twice, why is it asking a third time before running the script",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "gave it full perms and a clear task, still ends every message with 'shall i proceed?'",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "it lists three options and waits instead of just doing the obvious one",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "told it to fix the lint errors. it wrote a plan and requested approval. just fix them??",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "every step is 'would you like me to continue'. yes. always yes. go",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "just run it already omg, i approved this an hour ago",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "it keeps double checking things i literally put in the instructions",
+    "expected": [
+      "stalls-instead-of-acting"
+    ]
+  },
+  {
+    "text": "asked for a one-liner, got four paragraphs and a bulleted summary",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "why does 'whats the flag for recursive' come with a history lesson",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "every reply has an intro, headers, a conclusion and key takeaways. i wanted yes or no",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "scrolling forever to find the actual command buried in the essay",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "tldr should not need its own tldr, how do i make it stop padding",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "every reply, an essay",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "the code i need is five lines, the explanation is five hundred words",
+    "expected": [
+      "bloated-answers"
+    ]
+  },
+  {
+    "text": "it started writing code before i even finished describing the bug",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "didnt read the file, didnt ask what framework we use, just guessed and generated",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "i said fix the login issue and it rewrote a random component without asking which login",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "it responds to the question it wishes i asked, not the one i asked",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "zero clarifying questions, it just dove in and built something totally unrelated to what i needed",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "it dove straight into rewriting the entire platform without asking a single question about scope",
+    "expected": [
+      "starting-blind",
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "it assumed react, we're a vue shop, it never checked",
+    "expected": [
+      "starting-blind"
+    ]
+  },
+  {
+    "text": "asked it to migrate the whole monolith in one prompt and it choked halfway",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "the feature spans thirty files and it keeps dropping pieces when it tries them all at once",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "should i be splitting this rewrite into chunks first? one giant ask isnt working",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "it gets 80% thru the massive refactor then the output just degrades",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "huge task, starts strong, then contradicts its own earlier edits by file twelve",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "how do ppl handle multi week projects with it, one convo clearly cant hold the whole thing",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "gave it the entire spec in one go and got soup back, prob needs smaller pieces",
+    "expected": [
+      "problem-too-big"
+    ]
+  },
+  {
+    "text": "whats a good lunch spot near the office, im starving",
+    "expected": [
+      "off_topic"
+    ]
+  },
+  {
+    "text": "did standup move to 10 or is it still 9:30?",
+    "expected": [
+      "off_topic"
+    ]
+  },
+  {
+    "text": "any recs for a standing desk under 300 bucks",
+    "expected": [
+      "off_topic"
+    ]
+  },
+  {
+    "text": "our k8s ingress 502s after cert rotation, seen that before?",
+    "expected": [
+      "off_topic"
+    ]
+  }
+]

@@ -1,0 +1,156 @@
+/**
+ * Offline generator for src/embed-synonyms.ts — the embeddings-derived
+ * nearest-vocabulary table (contract unlock recorded in the project's
+ * decision log). Runtime stays lexical: this script runs once, offline, and
+ * emits a static surface-word → corpus-word map.
+ *
+ * Usage: node scripts/build-embed-table.mjs <path-to-glove.6B.50d.txt>
+ * (word2vec text format — a count/dim header line is skipped if present.)
+ *
+ * Method: corpus-side vocabulary (problems, slugs, lexicon, signals,
+ * aliases, synonym targets) anchors the space; the top-frequency GloVe words
+ * not already in that vocabulary map to their nearest corpus word by cosine.
+ * A candidate is kept only when similarity >= SIM_MIN and its two nearest
+ * corpus words don't disagree about the category while scoring within
+ * AMBIG_RATIO of each other.
+ */
+import { createInterface } from "node:readline";
+import { createReadStream, readFileSync, writeFileSync } from "node:fs";
+import { join } from "node:path";
+
+const SIM_MIN = 0.72;
+const AMBIG_RATIO = 0.95;
+const CANDIDATE_POOL = 40000;
+const MAX_TABLE = 12000;
+
+const glovePath = process.argv[2];
+if (!glovePath) {
+  console.error("usage: node scripts/build-embed-table.mjs <glove.txt>");
+  process.exit(1);
+}
+
+const MCP = join(import.meta.dirname, "..");
+
+// --- Corpus-side vocabulary with word → categories attribution. ---
+
+const words = (text) =>
+  (text.toLowerCase().match(/[a-z]+/g) ?? []).filter((w) => w.length >= 3);
+
+const corpusSrc = readFileSync(join(MCP, "src", "generated", "corpus.ts"), "utf8");
+const bundle = JSON.parse(corpusSrc.slice(corpusSrc.indexOf("= {") + 2, -2));
+const aliasesSrc = readFileSync(join(MCP, "src", "aliases.ts"), "utf8");
+const lexiconSrc = readFileSync(join(MCP, "src", "lexicon.ts"), "utf8");
+
+const wordCategories = new Map();
+const attribute = (text, slug) => {
+  for (const w of words(text)) {
+    if (!wordCategories.has(w)) wordCategories.set(w, new Set());
+    wordCategories.get(w).add(slug);
+  }
+};
+
+for (const category of bundle.categories) {
+  attribute(category.problem, category.slug);
+  attribute(category.slug.replaceAll("-", " "), category.slug);
+}
+for (const entry of bundle.entries) {
+  attribute(entry.intentSignals.join(" "), entry.category);
+  attribute(entry.name, entry.category);
+}
+// aliases.ts and lexicon.ts carry per-entry / per-category blocks; attribute
+// coarsely by scanning each quoted string under its current key.
+for (const src of [aliasesSrc, lexiconSrc]) {
+  let current = null;
+  for (const line of src.split("\n")) {
+    const key = line.match(/^\s*"([a-z0-9-]+)": \[/);
+    if (key) {
+      const id = key[1];
+      const entry = bundle.entries.find((e) => e.id === id);
+      current = entry ? entry.category : bundle.categories.some((c) => c.slug === id) ? id : null;
+      continue;
+    }
+    if (current) {
+      for (const str of line.match(/"([^"]+)"/g) ?? []) attribute(str, current);
+    }
+  }
+}
+
+const targetWords = [...wordCategories.keys()];
+console.error(`corpus vocabulary: ${targetWords.length} words`);
+
+// --- Pass over GloVe: collect target vectors, then score candidates. ---
+
+const norm = (v) => {
+  let s = 0;
+  for (const x of v) s += x * x;
+  s = Math.sqrt(s) || 1;
+  return v.map((x) => x / s);
+};
+
+const targetSet = new Set(targetWords);
+const targetVecs = new Map();
+const candidates = [];
+let rank = 0;
+
+const rl = createInterface({ input: createReadStream(glovePath) });
+for await (const line of rl) {
+  const sp = line.indexOf(" ");
+  const word = line.slice(0, sp);
+  if (rank === 0 && /^\d+$/.test(word)) {
+    rank++;
+    continue; // word2vec header
+  }
+  rank++;
+  if (targetSet.has(word)) {
+    targetVecs.set(word, norm(line.slice(sp + 1).trim().split(" ").map(Number)));
+  } else if (
+    rank <= CANDIDATE_POOL &&
+    /^[a-z]{3,}$/.test(word) &&
+    candidates.length < CANDIDATE_POOL
+  ) {
+    candidates.push([word, norm(line.slice(sp + 1).trim().split(" ").map(Number))]);
+  }
+}
+console.error(`targets with vectors: ${targetVecs.size}, candidates: ${candidates.length}`);
+
+const targets = [...targetVecs.entries()];
+const table = [];
+for (const [word, vec] of candidates) {
+  let best = null;
+  let second = null;
+  for (const [tw, tv] of targets) {
+    let dot = 0;
+    for (let i = 0; i < vec.length; i++) dot += vec[i] * tv[i];
+    if (!best || dot > best.sim) {
+      second = best;
+      best = { word: tw, sim: dot };
+    } else if (!second || dot > second.sim) {
+      second = { word: tw, sim: dot };
+    }
+  }
+  if (!best || best.sim < SIM_MIN) continue;
+  if (second && second.sim / best.sim > AMBIG_RATIO) {
+    const a = wordCategories.get(best.word);
+    const b = wordCategories.get(second.word);
+    if (![...b].every((c) => a.has(c)) && ![...a].every((c) => b.has(c))) continue;
+  }
+  table.push([word, best.word, best.sim]);
+}
+
+table.sort((a, b) => b[2] - a[2]);
+const kept = table.slice(0, MAX_TABLE);
+
+const lines = [
+  "/**",
+  " * GENERATED by scripts/build-embed-table.mjs — do not edit by hand.",
+  ` * Source: GloVe 6B 50d; SIM_MIN=${SIM_MIN}, AMBIG_RATIO=${AMBIG_RATIO},`,
+  ` * pool=${CANDIDATE_POOL}, kept=${kept.length}.`,
+  " * Embeddings-derived, offline-generated; runtime stays a lexical lookup.",
+  " */",
+  "export const EMBED_SYNONYMS: Record<string, string> = {",
+  ...kept.map(([w, t]) => `  ${JSON.stringify(w)}: ${JSON.stringify(t)},`),
+  "};",
+  "",
+];
+writeFileSync(join(MCP, "src", "embed-synonyms.ts"), lines.join("\n"));
+console.error(`wrote src/embed-synonyms.ts with ${kept.length} mappings`);

@@ -48,10 +48,17 @@ export function classifyIntent(description: string): string {
     (e) => `- \`${e.id}\` — **${e.name}** (in \`${e.category}\`) — this problem often co-presents with it`
   );
 
+  const border = result.alsoConsider
+    ? categoryBySlug.get(result.alsoConsider)!
+    : undefined;
+
   return [
     discriminated
       ? `Matched: **"${category.problem}"** (\`${category.slug}\`). Best-fitting techniques, in order:`
       : `Matched: **"${category.problem}"** (\`${category.slug}\`). Its techniques — pick by the signal lines:`,
+    ...(border
+      ? ["", `This also borders \`${border.slug}\` — if "${border.problem}" is closer to what's happening, run \`classify_intent\` again leaning that way.`]
+      : []),
     "",
     ...rows,
     ...(siblingRows.length > 0 ? ["", "Same family, different category:", ...siblingRows] : []),

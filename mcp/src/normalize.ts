@@ -16,6 +16,13 @@ const CONTRACTIONS = new Set(
   "don won isn aren doesn didn couldn shouldn wasn weren can hasn haven wouldn ain".split(" ")
 );
 
+// Negation triggers: instead of vanishing, they mark the next informative
+// token — "never asked" and "asks constantly" must not tokenize identically.
+const NEGATORS = new Set(
+  ("not no never without nothing neither " +
+    "cant dont wont doesnt isnt didnt wasnt couldnt wouldnt shouldnt aint hasnt havent arent werent").split(" ")
+);
+
 /** Light deterministic stemmer — enough to fold corpus/user inflections. */
 function stem(token: string): string {
   let t = token.replace(/'.*$/, "");
@@ -30,16 +37,29 @@ function stem(token: string): string {
   return t;
 }
 
-/** Lowercase, split, stem, drop stopwords and single characters. */
+/**
+ * Lowercase, split, stem, drop stopwords and single characters. A negation
+ * trigger ("never", "without", "doesn't") marks the next surviving token as
+ * `not_<stem>` — separating opposite-direction complaints that would
+ * otherwise share a bag.
+ */
 export function tokenize(text: string): string[] {
   const raw = text.toLowerCase().match(/[a-z0-9']+/g) ?? [];
   const out: string[] = [];
+  let negate = false;
   for (const token of raw) {
     const base = token.replace(/'.*$/, "");
+    if (NEGATORS.has(base) || token.includes("n't")) {
+      negate = true;
+      continue;
+    }
     if (STOPWORDS.has(base)) continue;
     if (token.includes("'") && CONTRACTIONS.has(base)) continue;
     const stemmed = stem(token);
-    if (stemmed.length > 1 && !STOPWORDS.has(stemmed)) out.push(stemmed);
+    if (stemmed.length > 1 && !STOPWORDS.has(stemmed)) {
+      out.push(negate ? `not_${stemmed}` : stemmed);
+      negate = false;
+    }
   }
   return out;
 }

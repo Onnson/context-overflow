@@ -71,6 +71,7 @@ export const CATEGORY_LEXICON: Record<string, string[]> = {
     "agrees agree agreeing sycophant sycophancy flattery flattering praise",
     "validates disagree disagrees pushback yes-man contrarian honest",
     "compliment complimented critique criticize challenge",
+    "never disagrees never pushes back",
   ],
   "stalls-instead-of-acting": [
     "stalls stalling stalled permission confirmation confirm halts hesitates",

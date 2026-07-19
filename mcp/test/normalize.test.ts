@@ -3,7 +3,13 @@ import { tokenize } from "../src/normalize.js";
 
 describe("tokenize", () => {
   it("drops stopwords and single characters", () => {
-    expect(tokenize("the AI is not a tool")).toEqual(["tool"]);
+    expect(tokenize("the AI is a tool")).toEqual(["tool"]);
+  });
+
+  it("marks the token after a negator", () => {
+    expect(tokenize("the AI is not a tool")).toEqual(["not_tool"]);
+    expect(tokenize("it never asked me")).toEqual(["not_ask"]);
+    expect(tokenize("it doesn't check anything")).toEqual(["not_check", "anyth"]);
   });
 
   it("folds inflections onto one stem", () => {
