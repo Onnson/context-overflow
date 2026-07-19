@@ -11,26 +11,42 @@ permalink: /
   Your agent runs them; you learn them; both of you use the same names.</p>
 </div>
 
-<div class="co-doors">
-  <section class="co-door" markdown="1">
+<section class="co-human" markdown="1">
 
-## For you — what's going wrong?
+## What's going wrong?
 
 Describe the problem the way you'd complain about it. The same
 intent-classifying layer your agent uses will point you at the technique.
 
 <form id="co-classify-form" class="co-classify">
   <label class="co-visually-hidden" for="co-classify-input">Describe what's going wrong</label>
-  <textarea id="co-classify-input" rows="3" maxlength="500"
+  <textarea id="co-classify-input" rows="4" maxlength="500"
     placeholder="e.g. it keeps saying the bug is fixed but the tests still fail…"></textarea>
   <button type="submit" class="btn btn-primary">Find the technique</button>
 </form>
 <div id="co-classify-result" class="co-classify-result" aria-live="polite"></div>
 
-Or browse by problem: [the eight categories](#co-categories) are listed below.
+### Or browse the eight problems
 
-  </section>
-  <section class="co-door" markdown="1">
+| The problem, as you experience it | Where to look |
+|---|---|
+| "My AI forgets everything between sessions" | [Lost the thread](/lost-the-thread/) |
+| "I'm outsourcing my thinking and getting dumber" | [Doing my thinking](/doing-my-thinking/) |
+| "My AI states things that turn out to be false" | [Confidently wrong](/confidently-wrong/) |
+| "My AI tells me I'm right even when I'm not" | [Agrees with everything](/agrees-with-everything/) |
+| "The AI stalls instead of acting" | [Stalls instead of acting](/stalls-instead-of-acting/) |
+| "I ask something simple and get a wall of text" | [Bloated answers](/bloated-answers/) |
+| "It starts producing before it understands the task" | [Starting blind](/starting-blind/) |
+| "The task is too big and it (or I) can't hold it" | [Problem too big](/problem-too-big/) |
+
+Every technique page follows the same path: the **problem**, the
+**mechanism**, **how to apply it** yourself, **what your agent does** with
+it, its **failure modes**, the **evidence**, and **how to build it into a
+prompt** — worked and annotated, never copy-paste.
+
+</section>
+
+<section class="co-agent" markdown="1">
 
 ## For your agent — add the MCP
 
@@ -88,30 +104,7 @@ Five tools: `list_categories` · `classify_intent` · `find_technique` ·
 `get_technique` · `apply_technique` — full details on the
 [connect page]({{ '/connect/' | relative_url }}).
 
-  </section>
-</div>
-
-<div class="co-categories" id="co-categories" markdown="1">
-
-## The eight problems
-
-| The problem, as you experience it | Where to look |
-|---|---|
-| "My AI forgets everything between sessions" | [Lost the thread](/lost-the-thread/) |
-| "I'm outsourcing my thinking and getting dumber" | [Doing my thinking](/doing-my-thinking/) |
-| "My AI states things that turn out to be false" | [Confidently wrong](/confidently-wrong/) |
-| "My AI tells me I'm right even when I'm not" | [Agrees with everything](/agrees-with-everything/) |
-| "The AI stalls instead of acting" | [Stalls instead of acting](/stalls-instead-of-acting/) |
-| "I ask something simple and get a wall of text" | [Bloated answers](/bloated-answers/) |
-| "It starts producing before it understands the task" | [Starting blind](/starting-blind/) |
-| "The task is too big and it (or I) can't hold it" | [Problem too big](/problem-too-big/) |
-
-Every technique page follows the same path: the **problem**, the
-**mechanism**, **how to apply it** yourself, **what your agent does** with
-it, its **failure modes**, the **evidence**, and **how to build it into a
-prompt** — worked and annotated, never copy-paste.
-
-</div>
+</section>
 
 <script>
   (function () {
@@ -172,7 +165,7 @@ prompt** — worked and annotated, never copy-paste.
         .then(function (r) { out.innerHTML = render(r); })
         .catch(function () {
           out.innerHTML =
-            "<p>Couldn’t reach the classifier — browse <a href='#co-categories'>the eight problems</a> instead.</p>";
+            "<p>Couldn’t reach the classifier — the eight problems below cover the same ground.</p>";
         });
     });
   })();
