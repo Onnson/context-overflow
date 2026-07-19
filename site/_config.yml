@@ -1,0 +1,32 @@
+title: ContextOverflow
+tagline: Context engineering for humans
+description: >-
+  Techniques for working with AI that extend your thinking instead of
+  replacing it — learn each technique, then hear your agent use it.
+url: "https://contextoverflow.org"
+theme: just-the-docs
+permalink: pretty
+markdown: kramdown
+
+search_enabled: true
+heading_anchors: true
+
+footer_content: >-
+  Corpus licensed CC BY-NC-ND 4.0 · Site code licensed Elastic License 2.0
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+exclude:
+  - build.mjs
+  - lib/
+  - package.json
+  - package-lock.json
+  - node_modules/
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - DEPLOY.md

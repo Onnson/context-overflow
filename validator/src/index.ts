@@ -7,7 +7,16 @@ import { scanForBlocked } from "./blocklist.js";
 
 const ROOT = join(import.meta.dirname, "..", "..");
 const TECHNIQUES_DIR = join(ROOT, "corpus", "techniques");
-const SKIP_DIRS = new Set([".git", ".claude", "node_modules", "persistent_context"]);
+const SKIP_DIRS = new Set([
+  ".git",
+  ".claude",
+  "node_modules",
+  "persistent_context",
+  "_site",
+  ".jekyll-cache",
+  "vendor",
+  ".bundle",
+]);
 
 const errors: string[] = [];
 const fail = (file: string, msg: string) => errors.push(`${relative(ROOT, file)}: ${msg}`);

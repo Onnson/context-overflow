@@ -1,0 +1,11 @@
+{
+  "name": "corpus-site-generator",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node build.mjs"
+  },
+  "dependencies": {
+    "yaml": "^2.5.0"
+  }
+}

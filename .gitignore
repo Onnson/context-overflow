@@ -12,3 +12,10 @@ dist/
 .env
 .env.*
 node_modules/
+
+# generated site pages
+site/techniques/
+
+# ruby
+vendor/
+.bundle/
