@@ -7,16 +7,16 @@ permalink: /
 
 <div class="co-landing-head">
   <h1>ContextOverflow</h1>
-  <p class="co-tagline">One corpus of thinking techniques for working with AI — through two doors.
-  Your agent runs them; you learn them; both of you use the same names.</p>
+  <p class="co-tagline">Describe what your AI keeps getting wrong — get the named technique
+  that fixes it. Free, no login, nothing stored.</p>
 </div>
 
 <section class="co-human" markdown="1">
 
 ## What's going wrong?
 
-Describe the problem the way you'd complain about it. The same
-intent-classifying layer your agent uses will point you at the technique.
+Say it the way you'd say it to a colleague — *"it keeps making things up"*
+is enough. No jargon needed.
 
 <form id="co-classify-form" class="co-classify">
   <label class="co-visually-hidden" for="co-classify-input">Describe what's going wrong</label>
@@ -26,7 +26,7 @@ intent-classifying layer your agent uses will point you at the technique.
 </form>
 <div id="co-classify-result" class="co-classify-result" aria-live="polite"></div>
 
-### Or browse the eight problems
+### Or pick the complaint that sounds most like yours
 
 | The problem, as you experience it | Where to look |
 |---|---|
@@ -39,20 +39,24 @@ intent-classifying layer your agent uses will point you at the technique.
 | "It starts producing before it understands the task" | [Starting blind](/starting-blind/) |
 | "The task is too big and it (or I) can't hold it" | [Problem too big](/problem-too-big/) |
 
-Every technique page follows the same path: the **problem**, the
-**mechanism**, **how to apply it** yourself, **what your agent does** with
-it, its **failure modes**, the **evidence**, and **how to build it into a
-prompt** — worked and annotated, never copy-paste.
+Every technique page gives you the problem, why it happens, how to fix it
+yourself, and how to have your AI assistant fix it too — ending in a worked
+prompt you'll know how to build, not just paste.
+
+One more thing, and it's the unusual part: your AI assistant can learn these
+same techniques, under the same names. You read *Self-Ask Before Delegating*
+here; mid-task, your assistant says *"breaking this into its sub-questions
+before answering"* — and you know exactly what it's doing.
 
 </section>
 
 <section class="co-agent" markdown="1">
 
-## For your agent — add the MCP
+## For your AI assistant — connect it once
 
-**Endpoint: `https://contextoverflow.org/mcp`** — free, no account, no key.
-Stateless: nothing you send is stored. Your agent gets the same techniques
-you learn here, and narrates them in the same vocabulary.
+ContextOverflow speaks MCP — a plug-in standard your AI assistant can
+install. Point it at this address and it gets the same techniques you just
+learned:
 
 <details open markdown="1"><summary><strong>Claude Code</strong></summary>
 
@@ -100,9 +104,10 @@ npx mcp-remote https://contextoverflow.org/mcp
 
 </details>
 
-Five tools: `list_categories` · `classify_intent` · `find_technique` ·
-`get_technique` · `apply_technique` — full details on the
-[connect page]({{ '/connect/' | relative_url }}).
+Full details for every client are on the
+[connect page]({{ '/connect/' | relative_url }}). From then on it narrates:
+it tells you which technique it's running, in the same words you learned
+here.
 
 </section>
 
@@ -123,7 +128,7 @@ Five tools: `list_categories` · `classify_intent` · `find_technique` ·
     function render(r) {
       if (r.kind === "match") {
         var html =
-          "<p><strong>Sounds like:</strong> “" + esc(r.category.problem) + "”</p><ul>";
+          "<p><strong>That has a name —</strong> “" + esc(r.category.problem) + "”</p><ul>";
         r.techniques.forEach(function (t) {
           html += "<li>" + link(t.url, t.name) + " <em>(" + esc(t.type) + ")</em></li>";
         });
