@@ -1,6 +1,7 @@
 import { WebStandardStreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js";
 import { handleClassify } from "./landing-api.js";
 import { record, type CoEvent, type Env } from "./observability.js";
+import { rateLimit } from "./ratelimit.js";
 import { buildServer } from "./server.js";
 
 const SITE = "https://contextoverflow.org";
@@ -63,6 +64,8 @@ export default {
 
     if (url.pathname === "/mcp" || url.pathname === "/mcp/") {
       if (request.method === "POST") {
+        const limited = await rateLimit(env.MCP_LIMITER, request);
+        if (limited) return withHeaders(limited, corsHeaders(origin));
         await sniffInitialize(request, observe);
         const server = buildServer(observe);
         const transport = new WebStandardStreamableHTTPServerTransport({
@@ -88,6 +91,8 @@ export default {
 
     if (url.pathname === "/classify") {
       if (request.method === "POST") {
+        const limited = await rateLimit(env.MCP_LIMITER, request);
+        if (limited) return withHeaders(limited, corsHeaders(origin));
         return withHeaders(await handleClassify(request, observe), corsHeaders(origin));
       }
       return new Response("POST JSON {description} to classify.", {

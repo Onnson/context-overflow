@@ -116,6 +116,14 @@ strong {
   margin-top: 0.5rem;
 }
 
+// Contributor CTA — the "suggest a technique" nudge on the landing and in
+// the no-match classifier result. Quiet, but present.
+.co-tellus {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-top: 1.25rem;
+}
+
 .co-visually-hidden {
   position: absolute;
   width: 1px;

@@ -40,8 +40,9 @@ a saved query programmatically.
 
 ## Three-month trends (Analytics Engine SQL API)
 
-Requires an API token with **Account Analytics: Read** (current project
-tokens lack it — one-minute dashboard fix to enable pulling these remotely):
+Readable with the project's Cloudflare account token (the `cfat` launch
+token) — verified against the live dataset. Example (calls per tool, last
+30 days, self-probes excluded):
 
 ```sh
 curl "https://api.cloudflare.com/client/v4/accounts/<ACCOUNT_ID>/analytics_engine/sql" \
@@ -50,9 +51,32 @@ curl "https://api.cloudflare.com/client/v4/accounts/<ACCOUNT_ID>/analytics_engin
 SELECT blob2 AS tool, sum(_sample_interval) AS calls
 FROM "context-overflow"
 WHERE timestamp > NOW() - INTERVAL '30' DAY
+  AND blob7 NOT IN ('curl/8.5.0','curl-probe/1.0','SmitheryBot/1.0','ducks-in-a-row-probe/1.0')
+  AND blob9 NOT IN ('probe','redteam-probe','registry-probe')
 GROUP BY tool ORDER BY calls DESC
 SQL
 ```
 
 Variants: `blob4` = category, `blob3` = outcome, `blob8` = country,
-`blob6` = query text.
+`blob6` = query text, `blob7` = user-agent, `blob9` = client name.
+
+## Real users vs. our own probes
+
+Verification traffic — our own checks and any automated scanners — writes
+events too, so a raw count conflates demand with noise. Subtract the known
+probe fingerprints (the `NOT IN (...)` clause above). Current probe denylist:
+
+- **user-agents** (`blob7`): `curl/8.5.0`, `curl-probe/1.0`, `SmitheryBot/1.0`,
+  `ducks-in-a-row-probe/1.0`
+- **client names** (`blob9`, from MCP `initialize`): `probe`, `redteam-probe`,
+  `registry-probe`
+
+**"First real user"** = a `classify_api` or `initialize` event whose
+user-agent and client name are both outside that list. Everything in the
+dataset today is a self-probe; the first row that survives the filter is the
+first real arrival.
+
+Run future self-checks with a single user-agent — `co-probe/1` — so new
+contamination is one string to add here. The six saved dashboard queries are
+left unfiltered (probe volume is a handful of identifiable rows); use the SQL
+above for the clean signal.

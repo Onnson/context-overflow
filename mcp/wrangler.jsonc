@@ -8,6 +8,10 @@
   "analytics_engine_datasets": [
     { "binding": "ANALYTICS_ENGINE", "dataset": "context-overflow" }
   ],
+  // Per-IP flood protection for /classify and /mcp (fails open — see src/ratelimit.ts).
+  "ratelimits": [
+    { "name": "MCP_LIMITER", "namespace_id": "1001", "simple": { "limit": 100, "period": 60 } }
+  ],
   "env": {
     // Production: routed on the apex zone next to the Pages site; the
     // workers.dev staging URL stays off. Deploy: npx wrangler deploy --env production
@@ -17,6 +21,9 @@
       "observability": { "enabled": true },
       "analytics_engine_datasets": [
         { "binding": "ANALYTICS_ENGINE", "dataset": "context-overflow" }
+      ],
+      "ratelimits": [
+        { "name": "MCP_LIMITER", "namespace_id": "1001", "simple": { "limit": 100, "period": 60 } }
       ],
       "routes": [
         { "pattern": "contextoverflow.org/mcp*", "zone_name": "contextoverflow.org" },

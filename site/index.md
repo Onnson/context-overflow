@@ -54,6 +54,11 @@ before answering"* — and you know exactly what it's doing. That's the premise
 of this whole place: not a smarter AI, not a dependent human — the pair,
 thinking better together.
 
+Wanna help with more techniques? Think we forgot something?
+[Suggest it — or upvote what's already there](https://github.com/Onnson/context-overflow/discussions/categories/ideas).
+The suggestion box is open, and what gets the most votes is what we build next.
+{: .co-tellus }
+
 </section>
 
 <section class="co-agent" markdown="1">
@@ -158,7 +163,12 @@ here.
         "<p><strong>Couldn’t match that directly — pick the closest:</strong></p><ul>" +
         r.options.map(function (o) {
           return "<li>" + link(o.url, "“" + o.problem + "”") + "</li>";
-        }).join("") + "</ul>"
+        }).join("") +
+        "</ul><p class='co-tellus'>Still not it? " +
+        link(
+          "https://github.com/Onnson/context-overflow/discussions/categories/ideas",
+          "Suggest it on the board →"
+        ) + " — and upvote it if someone already did.</p>"
       );
     }
 

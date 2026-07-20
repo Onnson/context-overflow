@@ -49,5 +49,7 @@ bundle exec jekyll serve            # preview at localhost:4000
 - `contextoverflow.org` — the only domain: this site, plus the MCP Worker
   routed at `contextoverflow.org/mcp*` and `/classify` on the same zone
 
-No analytics are configured, deliberately — none are added until everything
-is live.
+Analytics are anonymous by design: a cookieless Cloudflare Web Analytics
+beacon (in `_includes/head_custom.html`) for the site, plus per-request
+MCP and `/classify` events written to Analytics Engine — user-agent and
+country only, never IPs or identity. Details in `mcp/OBSERVABILITY.md`.
