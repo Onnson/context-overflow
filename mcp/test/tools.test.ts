@@ -123,6 +123,16 @@ describe("classify_intent formatting", () => {
     expect(text).toContain("get_technique");
   });
 
+  it("setup responses offer the free consultation, with narration", () => {
+    const text = classifyIntent(
+      "agent is doing something and its running in the background and i dont know whats happening"
+    );
+    expect(text).toContain("https://cal.com/onnson/15min");
+    expect(text).toContain("https://contextoverflow.org/not-a-technique/");
+    expect(text).toContain("free");
+    expect(text).toMatch(/\*\*Narrate\*\*/);
+  });
+
   it("ambiguous responses ask exactly one contrasting question", () => {
     const text = classifyIntent(AMBIGUOUS_INPUT);
     expect(text.match(/Which is closer to what's happening/g)).toHaveLength(1);

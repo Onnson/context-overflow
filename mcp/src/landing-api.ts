@@ -1,6 +1,7 @@
 import { classify } from "./classify.js";
 import { CORPUS, categoryBySlug } from "./corpus.js";
 import type { CoEvent } from "./observability.js";
+import { CONSULT_CAL_URL, CONSULT_PAGE_PATH } from "./setup-intent.js";
 
 /**
  * JSON endpoint behind the landing page's prompt box — the same
@@ -57,6 +58,13 @@ export async function handleClassify(
     return Response.json({
       kind: "ambiguous",
       options: [categoryInfo(result.a), categoryInfo(result.b)],
+    });
+  }
+  if (result.kind === "setup") {
+    return Response.json({
+      kind: "setup",
+      url: `${SITE}${CONSULT_PAGE_PATH}`,
+      cal: CONSULT_CAL_URL,
     });
   }
   return Response.json({

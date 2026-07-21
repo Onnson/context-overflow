@@ -13,7 +13,8 @@ dual-written:
 ## Event fields
 
 `co.event` (tool_call | classify_api | initialize) · `co.tool` · `co.outcome`
-(match | ambiguous | no_match | served | not_found) · `co.category` ·
+(match | ambiguous | setup | no_match | served | not_found — `setup` means the
+query was routed to the free-consultation page, not the corpus) · `co.category` ·
 `co.technique` · `co.query` (≤500 chars) · `co.clientName` (initialize only)
 · `co.ua` · `co.country`
 

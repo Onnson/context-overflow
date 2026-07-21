@@ -3,6 +3,7 @@ import { EMBED_SYNONYMS } from "./embed-synonyms.js";
 import { CORPUS } from "./corpus.js";
 import { CATEGORY_LEXICON, CATEGORY_PHRASES } from "./lexicon.js";
 import { tokenize } from "./normalize.js";
+import { SETUP_LEXICON, SETUP_PHRASES, SETUP_PROBLEM } from "./setup-intent.js";
 import type { TechniqueEntry } from "./types.js";
 
 /**
@@ -19,6 +20,11 @@ import type { TechniqueEntry } from "./types.js";
  * rescues typos, shorthand, and morphology the stemmer misses. Scores fuse
  * linearly. Ambiguity between corpus-adjacent categories returns the top
  * match plus an explicit pointer instead of a clarifying question.
+ *
+ * A ninth identity document (setup-intent.ts) recognizes setup/usage/config
+ * complaints that no technique can fix; when it outscores every category the
+ * result is kind "setup", which downstream surfaces route to the free
+ * 15-minute consultation instead of the corpus.
  */
 
 // Tuned on the dev split and golden fixtures only — holdout stays unseen.
@@ -108,6 +114,10 @@ function charGrams(text: string): string[] {
 
 const phraseMarker = (slug: string) => `__phrase_${slug}`;
 
+// Pseudo-slug for the setup-intent identity document. It shares the index
+// (so IDF stays honest) but is never returned as a category.
+const SETUP_SLUG = "__setup";
+
 function phraseTokens(description: string): string[] {
   const lower = ` ${description.toLowerCase().replace(/[^a-z0-9']+/g, " ")} `;
   const tokens: string[] = [];
@@ -115,6 +125,9 @@ function phraseTokens(description: string): string[] {
     for (const phrase of phrases) {
       if (lower.includes(phrase)) tokens.push(phraseMarker(slug));
     }
+  }
+  for (const phrase of SETUP_PHRASES) {
+    if (lower.includes(phrase)) tokens.push(phraseMarker(SETUP_SLUG));
   }
   return tokens;
 }
@@ -157,6 +170,17 @@ function categoryCharText(slug: string): string {
 const { wordIdf, charIdf, knownWords, categoryWordDocs, categoryCharDocs, entryDocs, synonymMap, embedMap } = (() => {
   const catWordMass = new Map(CORPUS.categories.map((c) => [c.slug, categoryMass(c.slug)]));
   const catCharTokens = new Map(CORPUS.categories.map((c) => [c.slug, charGrams(categoryCharText(c.slug))]));
+
+  const setupMass: Mass = new Map();
+  addMass(setupMass, tokenize(SETUP_PROBLEM), PROBLEM_MASS);
+  addMass(setupMass, tokenize("setup usage configuration tooling"), SLUG_MASS);
+  addMass(setupMass, tokenize(SETUP_LEXICON.join(" ")), 1);
+  addMass(setupMass, [phraseMarker(SETUP_SLUG)], PHRASE_MASS);
+  catWordMass.set(SETUP_SLUG, setupMass);
+  catCharTokens.set(
+    SETUP_SLUG,
+    charGrams([SETUP_PROBLEM, SETUP_LEXICON.join(" "), SETUP_PHRASES.join(" ")].join(" "))
+  );
 
   const dfOver = (docs: Iterable<string>[][]) => {
     const df = new Map<string, number>();
@@ -235,6 +259,9 @@ export type Classification =
       ranked: { entry: TechniqueEntry; score: number }[];
     }
   | { kind: "ambiguous"; a: string; b: string }
+  // Setup/usage/config intent — no technique applies; route to the free
+  // 15-minute consultation instead of a category.
+  | { kind: "setup" }
   | { kind: "no_match" };
 
 export function classify(description: string): Classification {
@@ -284,6 +311,23 @@ export function classify(description: string): Classification {
     })
     .filter((c) => (c.hits >= minHits || (c.hits >= 1 && c.charScore >= CHAR_STRONG)) && c.score >= ABS_MIN)
     .sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug));
+
+  // Setup intent competes in the same space under the same qualification
+  // rule, plus one stricter gate: at least one setup phrase must anchor it.
+  // Loose setup words ("background", "running") strengthen a phrase-anchored
+  // match but never create one — a stolen technique query costs more than a
+  // setup miss. And it only wins outright: when a category scores at least
+  // as high, the category answer stands.
+  const setupWord = similarity(wordQuery, categoryWordDocs.get(SETUP_SLUG)!, embedOnly);
+  const setupChar = similarity(charQuery, categoryCharDocs.get(SETUP_SLUG)!);
+  const setupScore = setupWord.score + CHAR_WEIGHT * setupChar.score;
+  const setupQualifies =
+    rawTokens.includes(phraseMarker(SETUP_SLUG)) &&
+    (setupWord.hits >= minHits || (setupWord.hits >= 1 && setupChar.score >= CHAR_STRONG)) &&
+    setupScore >= ABS_MIN;
+  if (setupQualifies && (qualified.length === 0 || setupScore > qualified[0].score)) {
+    return { kind: "setup" };
+  }
 
   if (qualified.length === 0) return { kind: "no_match" };
   const [top, second] = qualified;

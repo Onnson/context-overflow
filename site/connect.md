@@ -26,7 +26,7 @@ agent can call any of them directly:
 | Tool | What it does |
 |---|---|
 | `list_categories` | The eight problems, as you'd say them |
-| `classify_intent` | Describe what's going wrong → matched techniques; if the description fits two problems, it asks one clarifying question instead of guessing |
+| `classify_intent` | Describe what's going wrong → matched techniques; if the description fits two problems, it asks one clarifying question instead of guessing; setup/usage issues route to a [free 15-minute consult](/not-a-technique/) instead of a technique |
 | `find_technique` | Direct lookup when you already know the name |
 | `get_technique` | The technique's mechanism, agent instructions, verification, and failure modes |
 | `apply_technique` | The runnable scaffold: steps, narration line, and the check that proves it worked |

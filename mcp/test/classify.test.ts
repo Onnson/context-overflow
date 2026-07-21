@@ -31,6 +31,46 @@ describe("golden classification fixtures", () => {
   }
 });
 
+describe("setup intent routing", () => {
+  // The first real user's query, verbatim (2026-07-19, Analytics Engine).
+  it("routes background-agent-visibility complaints to setup", () => {
+    const result = classify(
+      "agent is doing something and its running in the background and i dont know whats happening"
+    );
+    expect(result.kind).toBe("setup");
+  });
+
+  it("routes connection problems to setup", () => {
+    expect(classify("the mcp server wont connect no matter what i configure").kind).toBe("setup");
+  });
+
+  it("routes credentials-and-installation questions to setup", () => {
+    expect(classify("where do i put the api key and how do i set it up in the config").kind).toBe("setup");
+  });
+
+  it("does not steal context-loss complaints that mention background docs", () => {
+    const result = classify(
+      "tired of pasting the same background doc into every new chat just so it knows what we're doing"
+    );
+    // Same bar as the golden suite: never setup, and lost-the-thread offered
+    // (an ambiguous that includes it is a correct clarifying question).
+    expect(result.kind).not.toBe("setup");
+    if (result.kind === "match") expect(result.category).toBe("lost-the-thread");
+    else if (result.kind === "ambiguous") expect([result.a, result.b]).toContain("lost-the-thread");
+    else expect.fail(`unexpected ${result.kind}`);
+  });
+
+  it("does not steal reasoning complaints", () => {
+    for (const description of [
+      "it keeps saying the bug is fixed but the tests still fail",
+      "I ask something simple and get a wall of text",
+      "it starts coding before understanding what i asked",
+    ]) {
+      expect(classify(description).kind, description).not.toBe("setup");
+    }
+  });
+});
+
 describe("classification determinism and shape", () => {
   it("is deterministic", () => {
     const a = classify("it keeps asking for confirmation after I approved");

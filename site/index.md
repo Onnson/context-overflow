@@ -151,6 +151,14 @@ here.
         }
         return html;
       }
+      if (r.kind === "setup") {
+        return (
+          "<p><strong>This doesn’t look like a thinking-pattern problem —</strong> it looks like setup: how the tool is wired, not how the AI reasons. No technique fixes that, but a human can.</p>" +
+          "<p>" + link(r.cal, "Book a free 15-minute consult →") +
+          " <em>— free of charge, no signup.</em></p>" +
+          "<p class='co-tellus'>" + link(r.url, "Why we route these differently →") + "</p>"
+        );
+      }
       if (r.kind === "ambiguous") {
         return (
           "<p><strong>Which is closer to what’s happening?</strong></p><ul>" +
