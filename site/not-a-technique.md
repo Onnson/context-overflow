@@ -5,30 +5,49 @@ permalink: /not-a-technique/
 nav_exclude: true
 ---
 
-# When it's not a technique problem
+# Not a technique problem
 
-Some of what goes wrong with AI tools has nothing to do with how the model
-thinks. Your agent is running in the background and you can't see what it's
-doing. The MCP server won't connect. Keys, quotas, versions, logs that don't
-seem to exist. No thinking technique fixes any of that — those are setup
-problems, and pointing you at a technique page would waste your time.
+**Some problems are wiring, not thinking.** An agent running in the background
+where you can't see it. An MCP server that won't connect. Keys, quotas, a
+billing page that swears everything is fine. The library names thinking
+patterns; this problem lives in how the tool is hooked up.
 
-So we route them differently. If the matcher sent you here, it read your
-complaint as *"the tooling is wired wrong"*, not *"the reasoning went wrong"*.
+The first real visitor to this site typed: *"agent is doing something and its
+running in the background and i dont know whats happening."* That's a complete
+problem statement — and we routed it to a thinking technique. This page is
+the fix.
 
-## Free 15-minute consultation
+**Step one: let your agent try.** Wiring is usually agent-fixable.
+[Connect your AI agent](/connect/) to this site's MCP and describe the problem
+to it — it gets a debugging scaffold built from the library's own techniques:
+map the dependency chain and work backward, test each link, claim nothing
+fixed without a passing check. It narrates as it goes, so you learn the
+wiring too.
 
-<a class="btn btn-primary" href="https://cal.com/onnson/15min?overlayCalendar=true">Book 15 minutes — free of charge →</a>
+**Step two: if it's still stuck** — or the fix lives behind a billing page or
+account dashboard your agent can't touch — you'll talk to Tal Onn. He built
+this site and has wired agents, MCP servers, and observability setups for
+years. Fifteen minutes, on video. Bring the actual screen — we'll look at it
+together.
 
-No signup, no pitch, no follow-up funnel. You talk to a human who has wired
-agents, MCP servers, and observability setups before, and we help as much as
-15 minutes allows. If your problem turns out to be a thinking-pattern problem
-after all, we'll point you at the right page and you keep the remaining
-minutes.
+Why free? Early days — every setup problem we see teaches us what to build
+next.
 
-## If it *is* about how the AI thinks
+If yours turns out to be technique-shaped after all, you leave with the right
+page and the remaining minutes.
 
-Head back to [the eight problems](/) and describe what's going wrong — or if
-we're missing your problem entirely,
-[suggest it on the board](https://github.com/Onnson/context-overflow/discussions/categories/ideas)
-and upvote it if someone already did.
+<a class="btn btn-primary" href="https://cal.com/onnson/15min?overlayCalendar=true">Book 15 minutes →</a>
+
+Booking asks three things: your name, an email, and what the meeting is
+about — one sentence there is plenty.
+
+## If it is a thinking problem
+
+"It keeps making things up," "it lost the thread," "it agrees with
+everything" — that's the library's territory.
+[Describe yours on the front page](/) and get the named technique.
+
+## If the library is missing something
+
+[Suggest it on the board](https://github.com/Onnson/context-overflow/discussions/categories/ideas)
+— and upvote it if someone already did.

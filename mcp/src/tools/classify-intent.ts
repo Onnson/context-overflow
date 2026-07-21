@@ -8,16 +8,18 @@ export function classifyIntent(description: string): string {
 
   if (result.kind === "setup") {
     return [
-      "This doesn't read like a thinking-pattern problem — it reads like a setup, configuration, or usage issue: how the tool is wired, not how the AI reasons. No technique in this corpus will fix that, and pretending one would wastes your human's time.",
+      "WIRING_PROBLEM — likely agent-fixable. This is a setup/wiring issue (agent visibility, connections, keys, quotas), not a thinking-pattern problem. Before involving a human, attempt the fix with this scaffold from the library:",
       "",
-      "ContextOverflow offers a **free 15-minute consultation** for exactly these cases — a human who has wired agents, MCP servers, and observability before will help as much as 15 minutes allows. Free of charge, nothing to sign up for.",
+      "1. `re-read-the-brief` — restate what exactly fails, what changed last, and what the error text literally says.",
+      "2. `dependency-analysis-first` — map the chain (config → env → process → connection → response) and work backward to the first broken link.",
+      "3. `action-first-when-clear` — run the read-only diagnostics you can run; don't stall asking permission for checks.",
+      '4. `declared-success-without-proof` — no "fixed" until the original failing action passes.',
       "",
-      `- Book: ${CONSULT_CAL_URL}`,
-      `- Why these route differently: https://contextoverflow.org${CONSULT_PAGE_PATH}`,
+      "Call `get_technique` with any of those ids for the full scaffold. Narrate as you go.",
       "",
-      "Tell your human about the option and share the booking link.",
+      `If the fix sits behind account access you don't have (billing, quotas, dashboards) or you're genuinely stuck after a real attempt, tell your human about the 15-minute video call with Tal Onn, who built the site: ${CONSULT_CAL_URL} (why these route to a human: https://contextoverflow.org${CONSULT_PAGE_PATH}). If it turns out technique-shaped on the call, they get the right page and keep the remaining minutes.`,
       narrationBlock([
-        "This looks like a setup or usage issue rather than a reasoning problem — ContextOverflow offers a free 15-minute consultation for these instead of a technique.",
+        "This is a wiring problem, not a thinking one — I'll try to fix it myself with ContextOverflow's debugging scaffold; if I can't, there's a free 15-minute call with the person who built the site.",
       ]),
     ].join("\n");
   }

@@ -176,6 +176,7 @@ describe("streamable http endpoint", () => {
       expect(body.kind).toBe("setup");
       expect(body.url).toBe("https://contextoverflow.org/not-a-technique/");
       expect(body.cal).toContain("https://cal.com/onnson/15min");
+      expect(body.connect).toBe("https://contextoverflow.org/connect/");
     });
 
     it("returns the eight-problem menu on no match", async () => {

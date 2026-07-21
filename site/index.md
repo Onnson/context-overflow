@@ -153,9 +153,12 @@ here.
       }
       if (r.kind === "setup") {
         return (
-          "<p><strong>This doesn’t look like a thinking-pattern problem —</strong> it looks like setup: how the tool is wired, not how the AI reasons. No technique fixes that, but a human can.</p>" +
-          "<p>" + link(r.cal, "Book a free 15-minute consult →") +
-          " <em>— free of charge, no signup.</em></p>" +
+          "<p><strong>That’s wiring, not thinking</strong> — techniques fix how an AI reasons; this problem lives in how the tool is hooked up.</p>" +
+          "<p>Wiring is something an AI agent can usually fix. " +
+          link(r.connect, "Connect yours to this site’s MCP") +
+          " and it gets a debugging scaffold built from the library’s own techniques — map the chain, test each link, no “fixed” without proof. " +
+          "Still stuck after a real try, or the fix lives behind your account? Free 15-minute video call with Tal Onn, who built this site. " +
+          link(r.cal, "Book 15 minutes →") + "</p>" +
           "<p class='co-tellus'>" + link(r.url, "Why we route these differently →") + "</p>"
         );
       }

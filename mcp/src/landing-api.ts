@@ -65,6 +65,7 @@ export async function handleClassify(
       kind: "setup",
       url: `${SITE}${CONSULT_PAGE_PATH}`,
       cal: CONSULT_CAL_URL,
+      connect: `${SITE}/connect/`,
     });
   }
   return Response.json({
