@@ -3,7 +3,7 @@ import { EMBED_SYNONYMS } from "./embed-synonyms.js";
 import { CORPUS } from "./corpus.js";
 import { CATEGORY_LEXICON, CATEGORY_PHRASES } from "./lexicon.js";
 import { tokenize } from "./normalize.js";
-import { SETUP_LEXICON, SETUP_PHRASES, SETUP_PROBLEM } from "./setup-intent.js";
+import { SETUP_LEXICON, SETUP_PHRASES, SETUP_PROBLEM, paddedLower, setupAnchor } from "./setup-intent.js";
 import type { TechniqueEntry } from "./types.js";
 
 /**
@@ -118,16 +118,19 @@ const phraseMarker = (slug: string) => `__phrase_${slug}`;
 // (so IDF stays honest) but is never returned as a category.
 const SETUP_SLUG = "__setup";
 
-function phraseTokens(description: string): string[] {
-  const lower = ` ${description.toLowerCase().replace(/[^a-z0-9']+/g, " ")} `;
+function phraseTokens(padded: string, includeSetup: boolean): string[] {
   const tokens: string[] = [];
   for (const [slug, phrases] of Object.entries(CATEGORY_PHRASES)) {
     for (const phrase of phrases) {
-      if (lower.includes(phrase)) tokens.push(phraseMarker(slug));
+      if (padded.includes(phrase)) tokens.push(phraseMarker(slug));
     }
   }
-  for (const phrase of SETUP_PHRASES) {
-    if (lower.includes(phrase)) tokens.push(phraseMarker(SETUP_SLUG));
+  // Setup markers join the query vector only when the anchor gate passed —
+  // an unanchored artifact mention shouldn't perturb the query norm either.
+  if (includeSetup) {
+    for (const phrase of SETUP_PHRASES) {
+      if (padded.includes(phrase)) tokens.push(phraseMarker(SETUP_SLUG));
+    }
   }
   return tokens;
 }
@@ -265,7 +268,10 @@ export type Classification =
   | { kind: "no_match" };
 
 export function classify(description: string): Classification {
-  const rawTokens = [...tokenize(description), ...phraseTokens(description)];
+  const padded = paddedLower(description);
+  const baseTokens = tokenize(description);
+  const anchored = setupAnchor(padded, baseTokens);
+  const rawTokens = [...baseTokens, ...phraseTokens(padded, anchored)];
   const distinct = new Set(rawTokens).size;
 
   // Word-channel query: known tokens only (an out-of-vocabulary token can
@@ -313,8 +319,9 @@ export function classify(description: string): Classification {
     .sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug));
 
   // Setup intent competes in the same space under the same qualification
-  // rule, plus one stricter gate: at least one setup phrase must anchor it.
-  // Loose setup words ("background", "running") strengthen a phrase-anchored
+  // rule, plus the two-tier anchor gate (setup-intent.ts): a symptom phrase
+  // anchors alone; an artifact phrase needs a co-occurring mechanics word.
+  // Loose setup words ("background", "running") strengthen an anchored
   // match but never create one — a stolen technique query costs more than a
   // setup miss. And it only wins outright: when a category scores at least
   // as high, the category answer stands.
@@ -322,7 +329,7 @@ export function classify(description: string): Classification {
   const setupChar = similarity(charQuery, categoryCharDocs.get(SETUP_SLUG)!);
   const setupScore = setupWord.score + CHAR_WEIGHT * setupChar.score;
   const setupQualifies =
-    rawTokens.includes(phraseMarker(SETUP_SLUG)) &&
+    anchored &&
     (setupWord.hits >= minHits || (setupWord.hits >= 1 && setupChar.score >= CHAR_STRONG)) &&
     setupScore >= ABS_MIN;
   if (setupQualifies && (qualified.length === 0 || setupScore > qualified[0].score)) {

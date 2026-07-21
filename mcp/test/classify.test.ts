@@ -69,6 +69,34 @@ describe("setup intent routing", () => {
       expect(classify(description).kind, description).not.toBe("setup");
     }
   });
+
+  // The four confirmed false positives from the 2026-07-21 adversarial
+  // audit: artifact phrases ("api key", "mcp server", "in the background")
+  // appearing without any broken-mechanics signal must not anchor setup.
+  it("artifact mentions without mechanics stay with their category", () => {
+    for (const description of [
+      "I asked how to rename an api key constant in one file and got four pages of security philosophy back",
+      "I asked which api key naming scheme is cleaner and instead of an opinion it just mirrored my preference back at me",
+      "Ever since it designed my mcp server for me I realize I no longer understand my own architecture at all",
+      "It promised to keep the refactor plan in the background of our conversation but ten messages later it had forgotten every step",
+    ]) {
+      expect(classify(description).kind, description).not.toBe("setup");
+    }
+  });
+
+  // The five confirmed false negatives from the same audit: genuine
+  // setup/usage complaints that previously mis-matched into categories.
+  it("recovers genuine setup complaints the first phrase list missed", () => {
+    for (const description of [
+      "please where I find the logs of the agent? it finish but I dont know what it do",
+      "i got charged twice this month and cant find where to see my invoice or downgrade the plan",
+      "which version am i even on? the changelog says the feature shipped but i dont have the menu option",
+      "install script errors out with permission denied on npm global, what am i doing wrong",
+      "billing page says free tier but the api returns 429 quota exceeded on the first request",
+    ]) {
+      expect(classify(description).kind, description).toBe("setup");
+    }
+  });
 });
 
 describe("classification determinism and shape", () => {
