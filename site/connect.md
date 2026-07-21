@@ -47,7 +47,9 @@ Every setup below was verified against the platform's own documentation
 (July 2026). All of them speak to this server directly — no bridge, no
 keys.
 
-**Claude Code**
+<details open markdown="1">
+<summary><strong>Claude Code</strong></summary>
+
 
 ```sh
 claude mcp add --transport http contextoverflow https://contextoverflow.org/mcp
@@ -61,14 +63,24 @@ skipped:
 { "mcpServers": { "contextoverflow": { "type": "http", "url": "https://contextoverflow.org/mcp" } } }
 ```
 
-**claude.ai / Claude Desktop / mobile** — Settings → Connectors → *Add
+</details>
+
+<details markdown="1">
+<summary><strong>claude.ai / Claude Desktop / mobile</strong></summary>
+
+Settings → Connectors → *Add
 custom connector* → paste `https://contextoverflow.org/mcp` → leave the
 OAuth fields empty → Add. Works on the free plan too (one custom connector
 there). Team/Enterprise: an org Owner adds it first. The connection is
 brokered through Anthropic's cloud, so it behaves identically on web,
 Desktop, and mobile.
 
-**ChatGPT (web)** — custom MCP servers are called *apps* now, added in
+</details>
+
+<details markdown="1">
+<summary><strong>ChatGPT (web)</strong></summary>
+
+Custom MCP servers are called *apps* now, added in
 developer mode. On the Pro plan: Settings → Apps → Advanced settings →
 enable developer mode, then add an app: name `ContextOverflow`, MCP server
 URL `https://contextoverflow.org/mcp`, authentication *none*. Read-only
@@ -76,21 +88,36 @@ apps like this one are exactly what Pro developer mode supports.
 Business/Enterprise/Edu: an admin enables developer mode and publishes it.
 Other plans don't have a path yet, and apps are web-only for now.
 
-**Cursor** — add to `.cursor/mcp.json` (project) or `~/.cursor/mcp.json`
+</details>
+
+<details markdown="1">
+<summary><strong>Cursor</strong></summary>
+
+Add to `.cursor/mcp.json` (project) or `~/.cursor/mcp.json`
 (global); Cursor detects the transport by itself:
 
 ```json
 { "mcpServers": { "contextoverflow": { "url": "https://contextoverflow.org/mcp" } } }
 ```
 
-**VS Code (Copilot agent mode)** — Command Palette → *MCP: Add Server* →
+</details>
+
+<details markdown="1">
+<summary><strong>VS Code (Copilot agent mode)</strong></summary>
+
+Command Palette → *MCP: Add Server* →
 HTTP, or add to `.vscode/mcp.json`:
 
 ```json
 { "servers": { "contextoverflow": { "type": "http", "url": "https://contextoverflow.org/mcp" } } }
 ```
 
-**Cline** — MCP Servers icon → *Remote Servers* tab → name + URL →
+</details>
+
+<details markdown="1">
+<summary><strong>Cline</strong></summary>
+
+MCP Servers icon → *Remote Servers* tab → name + URL →
 transport *Streamable HTTP*; or in `cline_mcp_settings.json` — the type
 must be exactly `streamableHttp` (camelCase); other spellings silently
 fall back to the legacy SSE transport:
@@ -99,14 +126,24 @@ fall back to the legacy SSE transport:
 { "mcpServers": { "contextoverflow": { "type": "streamableHttp", "url": "https://contextoverflow.org/mcp" } } }
 ```
 
-**Roo Code** — MCP icon → *Edit Global MCP* (or `.roo/mcp.json` in the
+</details>
+
+<details markdown="1">
+<summary><strong>Roo Code</strong></summary>
+
+MCP icon → *Edit Global MCP* (or `.roo/mcp.json` in the
 project, which wins):
 
 ```json
 { "mcpServers": { "contextoverflow": { "type": "streamable-http", "url": "https://contextoverflow.org/mcp" } } }
 ```
 
-**Continue** — add to `~/.continue/config.yaml` (Agent mode only):
+</details>
+
+<details markdown="1">
+<summary><strong>Continue</strong></summary>
+
+Add to `~/.continue/config.yaml` (Agent mode only):
 
 ```yaml
 mcpServers:
@@ -115,7 +152,12 @@ mcpServers:
     url: https://contextoverflow.org/mcp
 ```
 
-**Gemini CLI** — in `~/.gemini/settings.json`, use `httpUrl` — a plain
+</details>
+
+<details markdown="1">
+<summary><strong>Gemini CLI</strong></summary>
+
+In `~/.gemini/settings.json`, use `httpUrl` — a plain
 `url` key selects the SSE transport instead:
 
 ```json
@@ -124,14 +166,24 @@ mcpServers:
 
 Verify inside the CLI with `/mcp`.
 
-**Codex CLI** — add to `~/.codex/config.toml`:
+</details>
+
+<details markdown="1">
+<summary><strong>Codex CLI</strong></summary>
+
+Add to `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.contextoverflow]
 url = "https://contextoverflow.org/mcp"
 ```
 
-**Goose** — one-shot session:
+</details>
+
+<details markdown="1">
+<summary><strong>Goose</strong></summary>
+
+One-shot session:
 
 ```sh
 goose session --with-streamable-http-extension "https://contextoverflow.org/mcp"
@@ -139,12 +191,19 @@ goose session --with-streamable-http-extension "https://contextoverflow.org/mcp"
 
 or `goose configure` → Add Extension → Remote Extension (Streamable HTTP).
 
-**OpenAI Responses API** (building your own agent) — pass the endpoint as
+</details>
+
+<details markdown="1">
+<summary><strong>OpenAI Responses API (building your own agent)</strong></summary>
+
+Pass the endpoint as
 a hosted MCP tool:
 
 ```json
 { "type": "mcp", "server_label": "contextoverflow", "server_url": "https://contextoverflow.org/mcp" }
 ```
+
+</details>
 
 Anything not listed that speaks streamable HTTP: paste
 `https://contextoverflow.org/mcp` into its MCP server config. A legacy

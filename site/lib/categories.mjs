@@ -1,8 +1,20 @@
+// The four problem groups. Grouping is a human-side presentation layer:
+// the MCP and classifier stay flat. Sizes 3/4/3/1 keep every chunk inside
+// working-memory limits; "you" stands alone on purpose — it's the thesis
+// group ("not dumber because of it") and carries the brand hue.
+export const GROUPS = [
+  { slug: "trust", label: "Can I believe it?" },
+  { slug: "exec", label: "It's not doing what I asked" },
+  { slug: "fit", label: "It doesn't fit" },
+  { slug: "you", label: "What's it doing to me?" },
+];
+
 // Human-facing copy for the eleven problem-first categories.
 // Array order is sidebar order (after Home).
 export const CATEGORIES = [
   {
     slug: "lost-the-thread",
+    group: "fit",
     title: "Lost the thread",
     problem: "My AI forgets everything between sessions",
     blurb:
@@ -12,6 +24,7 @@ export const CATEGORIES = [
   },
   {
     slug: "doing-my-thinking",
+    group: "you",
     title: "Doing my thinking",
     problem: "I'm outsourcing my thinking and getting dumber",
     blurb:
@@ -21,6 +34,7 @@ export const CATEGORIES = [
   },
   {
     slug: "confidently-wrong",
+    group: "trust",
     title: "Confidently wrong",
     problem: "My AI states things that turn out to be false",
     blurb:
@@ -30,6 +44,7 @@ export const CATEGORIES = [
   },
   {
     slug: "agrees-with-everything",
+    group: "trust",
     title: "Agrees with everything",
     problem: "My AI tells me I'm right even when I'm not",
     blurb:
@@ -39,6 +54,7 @@ export const CATEGORIES = [
   },
   {
     slug: "stalls-instead-of-acting",
+    group: "exec",
     title: "Stalls instead of acting",
     problem: "The AI stalls instead of acting",
     blurb:
@@ -48,6 +64,7 @@ export const CATEGORIES = [
   },
   {
     slug: "bloated-answers",
+    group: "exec",
     title: "Bloated answers",
     problem: "I ask something simple and get a wall of text",
     blurb:
@@ -56,6 +73,7 @@ export const CATEGORIES = [
   },
   {
     slug: "starting-blind",
+    group: "exec",
     title: "Starting blind",
     problem: "It starts producing before it understands the task",
     blurb:
@@ -65,6 +83,7 @@ export const CATEGORIES = [
   },
   {
     slug: "problem-too-big",
+    group: "fit",
     title: "Problem too big",
     problem: "The task is too big and it (or I) can't hold it",
     blurb:
@@ -74,6 +93,7 @@ export const CATEGORIES = [
   },
   {
     slug: "faster-than-i-can-review",
+    group: "fit",
     title: "Faster than I can review",
     problem: "My AI produces more than I can review",
     blurb:
@@ -84,6 +104,7 @@ export const CATEGORIES = [
   },
   {
     slug: "did-more-than-i-asked",
+    group: "exec",
     title: "Did more than I asked",
     problem: "My AI did more than I asked it to",
     blurb:
@@ -93,6 +114,7 @@ export const CATEGORIES = [
   },
   {
     slug: "dumber-after-the-update",
+    group: "trust",
     title: "Dumber after the update",
     problem: "My AI got worse after an update",
     blurb:

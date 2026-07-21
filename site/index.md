@@ -15,6 +15,25 @@ permalink: /
   loads — the same 31 techniques, under the same names. Your AI stops
   improvising its reasoning and names its moves mid-task; you see the
   thinking as it happens and steer it with a word. Free, no login.</p>
+  <div class="co-hx">
+    <div class="co-hx-chat">
+      <p class="co-hx-you">it keeps saying the bug is fixed but the tests still fail</p>
+      <p class="co-hx-agent">This looks like “My AI states things that turn out to be
+      false” — applying the <strong class="co-hx-name">Declared Success Without
+      Proof</strong> technique from ContextOverflow.</p>
+    </div>
+    <svg class="co-hx-thread" viewBox="0 0 56 16" aria-hidden="true" focusable="false">
+      <path class="co-hx-line" pathLength="1" d="M2 8 H 46" fill="none"
+        stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+      <path class="co-hx-line" pathLength="1" d="M46 8 l -5.5 -3.6 M46 8 l -5.5 3.6"
+        fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+    </svg>
+    <a class="co-hx-card" href="/confidently-wrong/declared-success-without-proof/">
+      <span class="co-hx-card-chip">Anti-pattern</span>
+      <span class="co-hx-card-title">Declared Success Without Proof</span>
+      <span class="co-hx-card-cat">in “Confidently wrong”</span>
+    </a>
+  </div>
 </div>
 
 <section class="co-human" markdown="1">
@@ -36,19 +55,43 @@ no identity — and used to grow the library.</p>
 
 ### Or pick the complaint that sounds most like yours
 
-| The problem, as you experience it | Where to look |
-|---|---|
-| "My AI forgets everything between sessions" | [Lost the thread](/lost-the-thread/) |
-| "I'm outsourcing my thinking and getting dumber" | [Doing my thinking](/doing-my-thinking/) |
-| "My AI states things that turn out to be false" | [Confidently wrong](/confidently-wrong/) |
-| "My AI tells me I'm right even when I'm not" | [Agrees with everything](/agrees-with-everything/) |
-| "The AI stalls instead of acting" | [Stalls instead of acting](/stalls-instead-of-acting/) |
-| "I ask something simple and get a wall of text" | [Bloated answers](/bloated-answers/) |
-| "It starts producing before it understands the task" | [Starting blind](/starting-blind/) |
-| "The task is too big and it (or I) can't hold it" | [Problem too big](/problem-too-big/) |
-| "My AI produces more than I can review" | [Faster than I can review](/faster-than-i-can-review/) |
-| "My AI did more than I asked it to" | [Did more than I asked](/did-more-than-i-asked/) |
-| "My AI got worse after an update" | [Dumber after the update](/dumber-after-the-update/) |
+<div class="co-groups" markdown="1">
+<section class="co-group co-group-trust" markdown="1">
+#### Can I believe it?
+{: .co-group-label }
+
+- ["My AI states things that turn out to be false"](/confidently-wrong/) — **Confidently wrong**
+- ["My AI tells me I'm right even when I'm not"](/agrees-with-everything/) — **Agrees with everything**
+- ["My AI got worse after an update"](/dumber-after-the-update/) — **Dumber after the update**
+
+</section>
+<section class="co-group co-group-exec" markdown="1">
+#### It's not doing what I asked
+{: .co-group-label }
+
+- ["The AI stalls instead of acting"](/stalls-instead-of-acting/) — **Stalls instead of acting**
+- ["My AI did more than I asked it to"](/did-more-than-i-asked/) — **Did more than I asked**
+- ["It starts producing before it understands the task"](/starting-blind/) — **Starting blind**
+- ["I ask something simple and get a wall of text"](/bloated-answers/) — **Bloated answers**
+
+</section>
+<section class="co-group co-group-fit" markdown="1">
+#### It doesn't fit
+{: .co-group-label }
+
+- ["The task is too big and it (or I) can't hold it"](/problem-too-big/) — **Problem too big**
+- ["My AI produces more than I can review"](/faster-than-i-can-review/) — **Faster than I can review**
+- ["My AI forgets everything between sessions"](/lost-the-thread/) — **Lost the thread**
+
+</section>
+<section class="co-group co-group-you" markdown="1">
+#### What's it doing to me?
+{: .co-group-label }
+
+- ["I'm outsourcing my thinking and getting dumber"](/doing-my-thinking/) — **Doing my thinking**
+
+</section>
+</div>
 
 **Every technique page ends in a worked prompt you'll know how to build, not
 just paste** — built from the problem, why it happens, how to fix it

@@ -50,3 +50,29 @@
     window.coApplyTheme(saved || (prefersDark ? "dark" : "light"));
   })();
 </script>
+<script>
+  // Deep links into collapsed sections (search results, shared anchors):
+  // open every ancestor <details> before the browser jumps to the target.
+  (function () {
+    function openForHash() {
+      if (location.hash.length < 2) return;
+      var target;
+      try {
+        target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+      } catch (e) {}
+      if (!target || !target.closest) return;
+      var details = target.closest("details");
+      var opened = false;
+      while (details) {
+        if (!details.open) {
+          details.open = true;
+          opened = true;
+        }
+        details = details.parentElement && details.parentElement.closest("details");
+      }
+      if (opened) target.scrollIntoView();
+    }
+    window.addEventListener("DOMContentLoaded", openForHash);
+    window.addEventListener("hashchange", openForHash);
+  })();
+</script>
