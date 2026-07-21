@@ -1,4 +1,4 @@
-// Human-facing copy for the eight problem-first categories.
+// Human-facing copy for the eleven problem-first categories.
 // Array order is sidebar order (after Home).
 export const CATEGORIES = [
   {
@@ -60,7 +60,8 @@ export const CATEGORIES = [
     problem: "It starts producing before it understands the task",
     blurb:
       "Output that begins before understanding ends is rework in disguise. " +
-      "These techniques put comprehension checks in front of production.",
+      "These techniques put comprehension checks in front of production — " +
+      "so you and your AI start from the same picture of the task.",
   },
   {
     slug: "problem-too-big",

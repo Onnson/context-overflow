@@ -8,14 +8,14 @@ permalink: /connect/
 # Connect your agent
 
 **Connect your agent once and it can read this library while it works —
-same techniques, same names, same vocabulary.** MCP is the plug-in standard
+same 31 techniques, same names, one vocabulary between you.** MCP is the plug-in standard
 that lets assistants like Claude, Cursor, and Copilot use outside tools —
 the same mechanism they already use to search the web or read your files.
 This endpoint adds one more ability: pull the technique you just learned,
 mid-conversation, and tell you it's doing so in words you recognize.
 
 **Endpoint:** `https://contextoverflow.org/mcp`
-— no account, no API key, nothing to sign. The server is stateless — it
+— no account, no API key. The server is stateless — it
 holds nothing between requests. Questions sent for matching are collected
 anonymously (no accounts, no identity) and used to grow the library and
 understand how people and AI collaborate; the rest of your conversation is
@@ -38,7 +38,8 @@ describe the problem:
 Every response encourages the agent to **narrate** — to say, in-conversation,
 which technique it's applying and why, using the same names you see here.
 If your agent says *"one real unknown before I act,"* you can look that
-technique up. That's the point.
+technique up — or steer in the same terms: name a different technique and
+it knows exactly what you mean. That's the point.
 
 ## Set it up
 

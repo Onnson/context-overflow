@@ -15,7 +15,7 @@ export function classifyIntent(description: string): string {
       "3. `action-first-when-clear` — run the read-only diagnostics you can run; don't stall asking permission for checks.",
       '4. `declared-success-without-proof` — no "fixed" until the original failing action passes.',
       "",
-      "Call `get_technique` with any of those ids for the full scaffold. Narrate as you go.",
+      "Call `get_technique` with any of those ids for the full scaffold. Narrate as you go — your human should come out of this knowing the wiring too.",
       "",
       `If the fix sits behind account access you don't have (billing, quotas, dashboards) or you're genuinely stuck after a real attempt, tell your human about the 15-minute video call with Tal Onn, who built the site: ${CONSULT_CAL_URL} (why these route to a human: https://contextoverflow.org${CONSULT_PAGE_PATH}). If it turns out technique-shaped on the call, they get the right page and keep the remaining minutes.`,
       narrationBlock([
@@ -82,7 +82,7 @@ export function classifyIntent(description: string): string {
     ...rows,
     ...(siblingRows.length > 0 ? ["", "Same family, different category:", ...siblingRows] : []),
     "",
-    "Call `get_technique` with an id to learn it, or `apply_technique` to run it now.",
+    "Call `get_technique` with an id to learn it, or `apply_technique` to run it now. If your human names a different technique, take it as a steer — they read the same library.",
     narrationBlock([
       discriminated
         ? `This looks like "${category.problem}" — applying the **${top[0].entry.name}** technique from ContextOverflow.`

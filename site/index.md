@@ -63,13 +63,13 @@ The table above routes that to *Confidently wrong* →
 **Read it.** A few minutes: "done" is a receipt — the check that ran and its
 actual output — not a sentence.
 
-**Connect your AI** (setup below). It now holds the same 31 techniques,
-under the same names you see here.
+**Connect your AI** (setup below). It now holds the technique you just
+read, under the name you learned it by.
 
 **Hear the name come back.** Next time it finishes a task: *"Claiming done
 only with the receipt: ran the tests — 14 passed."* The words you just read.
-When a claim arrives without a receipt, you now have the name for what went
-wrong.
+When a claim arrives without a receipt, one word — *receipt* — sends it
+back.
 
 That's the premise of this whole place: not a smarter AI, not a dependent
 human — the pair, thinking better together.
@@ -180,7 +180,7 @@ check-it-worked walkthrough — are on the
           "<p>Wiring is something an AI agent can usually fix. " +
           link(r.connect, "Connect yours to this site’s MCP") +
           " and it gets a debugging scaffold built from the library’s own techniques — map the chain, test each link, no “fixed” without proof. " +
-          "Still stuck after a real try, or the fix lives behind your account? Free 15-minute video call with Tal Onn, who built this site. " +
+          "Still stuck after a real try, or the fix lives behind your account? A 15-minute video call with Tal Onn, who built this site. " +
           link(r.cal, "Book 15 minutes →") + "</p>" +
           "<p class='co-tellus'>" + link(r.url, "Why we route these differently →") + "</p>"
         );

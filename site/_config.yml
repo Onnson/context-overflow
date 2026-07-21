@@ -25,7 +25,7 @@ defaults:
         path: /assets/og.png
         width: 1200
         height: 630
-        alt: "ContextOverflow — the named technique that fixes what your AI keeps getting wrong"
+        alt: "ContextOverflow — context engineering for humans and their AI: learn the named technique, teach it to your AI"
 
 footer_content: >-
   Corpus licensed CC BY-NC-ND 4.0 · Site code licensed Elastic License 2.0
