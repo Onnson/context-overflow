@@ -7,10 +7,14 @@ permalink: /
 
 <div class="co-landing-head">
   <h1>ContextOverflow</h1>
-  <p class="co-tagline">Describe what your AI keeps getting wrong — get the named technique
-  that fixes it. You read the fix — one short page; your AI loads the same
-  31 techniques over MCP, under the same names, and can tell you which one
-  it's running mid-task. Free, no login.</p>
+  <p class="co-subtitle">Like StackOverflow, but for getting smarter with your AI —
+  not dumber because of it.</p>
+  <p class="co-tagline">Your best AI sessions happen when you both apply the same
+  thinking approaches and stay synchronized on the task's context.
+  ContextOverflow is a technique library you read and an MCP your AI
+  loads — the same 31 techniques, under the same names. Your AI stops
+  improvising its reasoning and names its moves mid-task; you see the
+  thinking as it happens and steer it with a word. Free, no login.</p>
 </div>
 
 <section class="co-human" markdown="1">
