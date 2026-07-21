@@ -97,6 +97,22 @@ describe("setup intent routing", () => {
       expect(classify(description).kind, description).toBe("setup");
     }
   });
+
+  // Round-2 audit findings: artifact phrases in first-person usage
+  // questions ("where do i put my api key") or with reload/timeout
+  // mechanics are genuine setup even though nothing says "broken".
+  it("recovers artifact-anchored usage questions and reload/timeout mechanics", () => {
+    for (const description of [
+      "where do i put my api key so the cli stops asking me every session",
+      "keep hitting the rate limit after like 10 messages, is there a way to raise it or check my quota?",
+      "i set the env var like the readme says but the tool still cant find my token",
+      "my config file changes get ignored, do i need to restart something for them to take effect",
+      "usage limit reset time is confusing, when does my quota actually refresh?",
+      "mcp server shows connected in settings but every tool call times out",
+    ]) {
+      expect(classify(description).kind, description).toBe("setup");
+    }
+  });
 });
 
 describe("classification determinism and shape", () => {

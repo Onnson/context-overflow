@@ -28,7 +28,7 @@ export const SETUP_LEXICON: string[] = [
   "logs logging monitor monitoring observability dashboard console terminal tail status visibility",
   "notification notifications notify alerts watch watching background running process",
   "key keys token credential credentials auth authentication login password billing subscription quota version upgrade api",
-  "permission denied npm invoice charged downgrade changelog errors",
+  "permission denied npm invoice charged downgrade changelog errors restart reset refresh cli readme timeout",
 ];
 
 /** Phrases that describe broken mechanics — anchor setup on their own. */
@@ -60,6 +60,8 @@ export const SETUP_SYMPTOM_PHRASES: string[] = [
   "my invoice",
   "charged twice",
   "which version am i",
+  "times out",
+  "timed out",
 ];
 
 /**
@@ -85,8 +87,15 @@ export const SETUP_PHRASES: string[] = [...SETUP_SYMPTOM_PHRASES, ...SETUP_ARTIF
 const MECHANICS_WORDS =
   "running runs process broken break breaks breaking fail fails failed failing " +
   "error errors crash crashes crashed expired expires invalid missing denied " +
-  "refused refuses timeout disconnect disconnects disconnected reconnect exceeded revoked rotated";
+  "refused refuses timeout disconnect disconnects disconnected reconnect exceeded revoked rotated " +
+  "restart restarts restarted reset resets refresh refreshes ignored readme";
 const MECHANICS_STEMS = new Set(tokenize(MECHANICS_WORDS));
+
+// First-person usage questions also qualify an artifact phrase: "where do i
+// put my api key" is a setup question with nothing broken in it. Reported
+// questions ("I asked how to rename an api key constant") deliberately
+// don't count — no "how to".
+const USAGE_QUESTION_PHRASES = ["where do i", "do i need", "is there a way"];
 
 /** The padded lowercase form every phrase channel substring-matches against. */
 export const paddedLower = (description: string) =>
@@ -94,11 +103,13 @@ export const paddedLower = (description: string) =>
 
 /**
  * The anchor gate: a symptom phrase alone qualifies; an artifact phrase
- * qualifies only with a mechanics stem somewhere in the query.
+ * qualifies only with a mechanics stem or a first-person usage question
+ * somewhere in the query.
  */
 export function setupAnchor(padded: string, queryStems: Iterable<string>): boolean {
   if (SETUP_SYMPTOM_PHRASES.some((p) => padded.includes(p))) return true;
   if (!SETUP_ARTIFACT_PHRASES.some((p) => padded.includes(p))) return false;
+  if (USAGE_QUESTION_PHRASES.some((p) => padded.includes(p))) return true;
   for (const t of queryStems) {
     const base = t.startsWith("not_") ? t.slice(4) : t;
     if (MECHANICS_STEMS.has(base)) return true;
