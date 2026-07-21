@@ -100,6 +100,14 @@ Settings → Connectors → *Add custom connector* → paste
 `https://contextoverflow.org/mcp`. No OAuth fields needed.
 
 </details>
+<details markdown="1"><summary><strong>ChatGPT (web, Pro plan)</strong></summary>
+
+Settings → Apps → *Advanced settings* → enable developer mode → add an
+app: name it, paste `https://contextoverflow.org/mcp`, authentication
+*none*. Business/Enterprise need an admin to enable it; other plans can't
+add custom apps yet.
+
+</details>
 <details markdown="1"><summary><strong>Cursor</strong></summary>
 
 Add to `~/.cursor/mcp.json`:
@@ -111,27 +119,18 @@ Add to `~/.cursor/mcp.json`:
 </details>
 <details markdown="1"><summary><strong>VS Code (Copilot agent mode)</strong></summary>
 
-Add to `mcp.json`:
+Add to `.vscode/mcp.json`:
 
 ```json
 { "servers": { "contextoverflow": { "type": "http", "url": "https://contextoverflow.org/mcp" } } }
 ```
 
 </details>
-<details markdown="1"><summary><strong>OpenAI Responses API</strong></summary>
 
-```json
-{ "type": "mcp", "server_label": "contextoverflow", "server_url": "https://contextoverflow.org/mcp" }
-```
-
-</details>
-<details markdown="1"><summary><strong>Anything stdio-only</strong></summary>
-
-```sh
-npx mcp-remote https://contextoverflow.org/mcp
-```
-
-</details>
+On Goose, the OpenAI API, Copilot Studio, or something else? The
+[connect page]({{ '/connect/' | relative_url }}) has the verified setup
+for each — plus a sixty-second way to test the server before wiring
+anything.
 
 **Then give it sixty seconds to prove it's wired in.** Say: *"Ask
 ContextOverflow what it has for: it keeps saying the bug is fixed but the
