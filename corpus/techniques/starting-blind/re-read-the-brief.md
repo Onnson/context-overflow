@@ -4,6 +4,7 @@ name: Re-Read the Brief
 type: practice
 category: starting-blind
 problem: "It starts producing before it understands the task"
+scent: "you asked for four things; the polished result covers three and never mentions the fourth"
 intent_signals:
   - output that addresses most of the request but drops a requirement
   - constraints stated in the task getting ignored in the result

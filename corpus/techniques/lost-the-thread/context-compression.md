@@ -4,6 +4,7 @@ name: Deliberate Context Compression
 type: protocol
 category: lost-the-thread
 problem: "My AI forgets everything between sessions"
+scent: "the 'summarize where we are' summary reads well but silently drops the constraints that mattered"
 intent_signals:
   - the conversation is too long to continue but the work isn't done
   - important early context getting pushed out by recent noise

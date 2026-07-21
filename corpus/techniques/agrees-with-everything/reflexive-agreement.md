@@ -4,6 +4,7 @@ name: Reflexive Agreement
 type: anti-pattern
 category: agrees-with-everything
 problem: "My AI tells me I'm right even when I'm not"
+scent: "every reply opens with \"you're absolutely right\", and one pushback flips its answer completely"
 intent_signals:
   - '"you''re absolutely right!" opening replies regardless of content'
   - the AI's position flipping the moment you push back

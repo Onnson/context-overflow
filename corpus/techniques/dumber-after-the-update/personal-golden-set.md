@@ -4,6 +4,7 @@ name: Personal Golden Set
 type: practice
 category: dumber-after-the-update
 problem: "My AI got worse after an update"
+scent: "everything feels vaguely worse since the update, but you can't point at one output that's actually broken"
 intent_signals:
   - '"it got dumber after the update"'
   - '"it used to handle this kind of thing fine"'

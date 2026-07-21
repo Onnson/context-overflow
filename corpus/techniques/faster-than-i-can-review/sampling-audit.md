@@ -4,6 +4,7 @@ name: Sampling Audit
 type: practice
 category: faster-than-i-can-review
 problem: "My AI produces more than I can review"
+scent: "scrolling through all 200 files felt like reviewing, but wouldn't catch the same mistake made everywhere"
 intent_signals:
   - '"it touched 300 files, there is no way I can read all of that"'
   - rubber-stamping a bulk diff after scrolling through it

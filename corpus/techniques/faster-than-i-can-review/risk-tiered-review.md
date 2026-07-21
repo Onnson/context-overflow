@@ -4,6 +4,7 @@ name: Risk-Tiered Review
 type: practice
 category: faster-than-i-can-review
 problem: "My AI produces more than I can review"
+scent: "the trivial rename and the risky change both got the same thirty-second skim"
 intent_signals:
   - '"it produces more than I can actually read"'
   - rubber-stamping diffs because reading everything is impossible

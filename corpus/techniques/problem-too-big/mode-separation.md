@@ -4,6 +4,7 @@ name: Explore, Plan, Implement — Separately
 type: protocol
 category: problem-too-big
 problem: "The task is too big and it (or I) can't hold it"
+scent: "it's writing code while still figuring out the task, and nobody can say where we are"
 intent_signals:
   - the AI writing code while still discovering what the task is
   - plans changing mid-implementation because understanding arrived late

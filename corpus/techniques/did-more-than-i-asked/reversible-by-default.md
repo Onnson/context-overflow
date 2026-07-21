@@ -4,6 +4,7 @@ name: Reversible by Default
 type: practice
 category: did-more-than-i-asked
 problem: "My AI did more than I asked it to"
+scent: "some extras cost thirty seconds, this one deleted the data \u2014 you never know which you'll get"
 intent_signals:
   - "it deleted files I never told it to touch"
   - "the agent deployed / pushed / sent something without asking"

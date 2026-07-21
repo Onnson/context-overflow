@@ -4,6 +4,7 @@ name: Re-Derive, Don't Patch
 type: practice
 category: dumber-after-the-update
 problem: "My AI got worse after an update"
+scent: "your long-tuned prompt keeps needing patches, and every patch fixes one symptom while waking another"
 intent_signals:
   - '"this prompt worked perfectly before the update"'
   - prompt edits that only ever add rules, never remove them

@@ -30,7 +30,8 @@ rmSync(OUT, { recursive: true, force: true });
 for (const [i, category] of CATEGORIES.entries()) {
   const dir = join(OUT, category.slug);
   mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, "index.md"), renderCategory(category, i + 2));
+  const catEntries = entries.filter((e) => e.fm.category === category.slug);
+  writeFileSync(join(dir, "index.md"), renderCategory(category, i + 2, catEntries));
 }
 for (const entry of entries) {
   const category = categoryBySlug.get(entry.fm.category);

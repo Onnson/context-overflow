@@ -4,6 +4,7 @@ name: Rephrase Before Responding
 type: practice
 category: doing-my-thinking
 problem: "I'm outsourcing my thinking and getting dumber"
+scent: "the answer fits your words but misses your point, and you only notice three paragraphs in"
 intent_signals:
   - answers that solve a slightly different problem than the one asked
   - discovering misalignment only after a lot of work was done

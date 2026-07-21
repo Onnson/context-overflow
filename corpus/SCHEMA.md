@@ -19,6 +19,11 @@ name: Action-First When Clear, Ask When Unclear
 type: practice                     # practice | anti-pattern | protocol
 category: stalls-instead-of-acting # one of the taxonomy categories below
 problem: "The AI stalls instead of acting"   # the problem as the human experiences it
+scent: "it recaps, asks, and offers options — anything but the approved work"
+                                   # one complaint-voiced line (≤ ~18 words) locating this
+                                   # technique inside its category; rendered on the category
+                                   # page as the "which version of it is yours?" line; must
+                                   # stay faithful to the Problem section
 intent_signals:                    # phrases/behaviors that indicate this entry applies;
   - repeated confirmation requests after a clear instruction   # used by MCP classify/find
   - approve/edit/rewrite closers

@@ -4,6 +4,7 @@ name: Stop at the First Surprise
 type: practice
 category: did-more-than-i-asked
 problem: "My AI did more than I asked it to"
+scent: "it found something that didn't match the task and just kept going instead of telling you"
 intent_signals:
   - '"I asked for one change and got a refactor"'
   - kept going after finding something unexpected instead of asking

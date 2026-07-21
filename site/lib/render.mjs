@@ -52,6 +52,10 @@ export function renderTechnique(entry, category, edges, byId, categoryBySlug) {
     "",
     sections["Narration"],
     "",
+    "**Your agent can pull this page itself, by name** — one-time setup on",
+    "the [connect page](/connect/). Until then, the standing prompt at the",
+    "bottom of this page carries the technique by hand.",
+    "",
     "### How you know it's working",
     "",
     sections["Verification"],
@@ -107,14 +111,20 @@ function relatedBlock(byLabel, byId, categoryBySlug) {
   return lines.join("\n");
 }
 
-/** Renders a category landing page; just-the-docs lists the children below it. */
-export function renderCategory(category, navOrder) {
+/**
+ * Renders a category landing page. The theme's auto child list is suppressed
+ * (has_toc: false) in favor of scent lines — each technique introduced by the
+ * complaint-voiced moment it covers, so a reader can choose without clicking
+ * blind.
+ */
+export function renderCategory(category, navOrder, catEntries) {
   return [
     "---",
     "layout: default",
     `title: ${JSON.stringify(category.title)}`,
     `nav_order: ${navOrder}`,
     "has_children: true",
+    "has_toc: false",
     `permalink: /${category.slug}/`,
     "---",
     "",
@@ -123,6 +133,12 @@ export function renderCategory(category, navOrder) {
     `> "${category.problem}"`,
     "",
     category.blurb,
+    "",
+    "## Which version of it is yours?",
+    "",
+    ...catEntries.map(
+      (e) => `- [${e.fm.name}](/${category.slug}/${e.fm.id}/) — ${e.fm.scent}`
+    ),
     "",
   ].join("\n");
 }

@@ -4,6 +4,7 @@ name: Scope Contract
 type: practice
 category: did-more-than-i-asked
 problem: "My AI did more than I asked it to"
+scent: "asked for a one-line fix, got a nine-file diff full of cleanups nobody ordered"
 intent_signals:
   - '"I asked for a small fix and got a refactor"'
   - unrequested cleanups bundled into the requested change

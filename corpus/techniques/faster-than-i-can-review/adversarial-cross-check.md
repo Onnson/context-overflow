@@ -4,6 +4,7 @@ name: Adversarial Cross-Check
 type: practice
 category: faster-than-i-can-review
 problem: "My AI produces more than I can review"
+scent: "the diff is too big to read, and asking it to double-check always comes back fine"
 intent_signals:
   - "it generated more code than I can possibly read"
   - approving large diffs unread because reviewing would take longer than the work

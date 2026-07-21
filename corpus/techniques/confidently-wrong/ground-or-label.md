@@ -4,6 +4,7 @@ name: Ground It or Label It
 type: practice
 category: confidently-wrong
 problem: "My AI states things that turn out to be false"
+scent: "every sentence sounds equally certain, and you can't tell which ones it made up"
 intent_signals:
   - fluent answers that turn out to contain invented details
   - not being able to tell which parts of an answer are verified

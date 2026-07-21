@@ -4,6 +4,7 @@ name: Clean-Context A/B
 type: practice
 category: dumber-after-the-update
 problem: "My AI got worse after an update"
+scent: "worked before the update, fails after \u2014 but the instructions file that has tripled never gets questioned"
 intent_signals:
   - '"it got dumber overnight" right after a version bump'
   - a prompt that worked for months suddenly failing

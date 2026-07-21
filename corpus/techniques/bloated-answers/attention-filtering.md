@@ -4,6 +4,7 @@ name: Filter Before You Reason
 type: practice
 category: bloated-answers
 problem: "I ask something simple and get a wall of text"
+scent: "the answer engages your side comment and the pasted thread's opinions instead of your actual question"
 intent_signals:
   - answers that get worse as the conversation gets longer
   - the AI addressing side comments instead of the question

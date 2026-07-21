@@ -4,6 +4,7 @@ name: Caution-as-Evasion Loop
 type: anti-pattern
 category: stalls-instead-of-acting
 problem: "The AI stalls instead of acting"
+scent: "three confirmations deep, every reply is 'yes, proceed', and the task still hasn't moved"
 intent_signals:
   - repeated requests for confirmation after a clear instruction
   - approve/edit/rewrite option lists closing a response

@@ -4,6 +4,7 @@ name: Map Dependencies, Work Backward
 type: practice
 category: problem-too-big
 problem: "The task is too big and it (or I) can't hold it"
+scent: "we started with the interesting piece, and now everything finished is waiting on something unbuilt"
 intent_signals:
   - big tasks started from whatever piece looked most tractable
   - work blocking on prerequisites discovered mid-flight

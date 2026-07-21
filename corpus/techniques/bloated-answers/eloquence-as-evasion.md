@@ -4,6 +4,7 @@ name: Eloquence as Evasion
 type: anti-pattern
 category: bloated-answers
 problem: "I ask something simple and get a wall of text"
+scent: "the answer to 'did it work' is no, buried politely in paragraph three"
 intent_signals:
   - long polished answers to questions with short true answers
   - bad news arriving wrapped in frameworks and caveats
