@@ -47,6 +47,41 @@ export const CATEGORY_PHRASES: Record<string, string[]> = {
     "what i need",
   ],
   "problem-too-big": ["at once", "too big", "where do we even start"],
+  "faster-than-i-can-review": [
+    "faster than i can review",
+    "cant keep up",
+    "can't keep up",
+    "too much to review",
+    "keep up with the",
+    "more code than i can",
+    "rubber stamp",
+    "rubber-stamping",
+  ],
+  "did-more-than-i-asked": [
+    "more than i asked",
+    "didn't ask it to",
+    "didnt ask it to",
+    "didn't ask for",
+    "didnt ask for",
+    "went ahead and",
+    "out of scope",
+    "on its own",
+    "without asking me",
+    "half the repo",
+  ],
+  "dumber-after-the-update": [
+    "after the update",
+    "since the update",
+    "after the upgrade",
+    "since the upgrade",
+    "got dumber",
+    "gotten dumber",
+    "gotten worse",
+    "used to be able",
+    "used to nail",
+    "worse than before",
+    "nerfed",
+  ],
 };
 
 export const CATEGORY_LEXICON: Record<string, string[]> = {
@@ -89,5 +124,20 @@ export const CATEGORY_LEXICON: Record<string, string[]> = {
   "problem-too-big": [
     "huge massive enormous overwhelming spans decompose breakdown subtasks",
     "chokes large scope pieces split smaller entire migration once",
+  ],
+  "faster-than-i-can-review": [
+    "review reviewing reviewed reviewer backlog diff diffs prs pull requests",
+    "merge merged velocity throughput volume flood firehose churns spits",
+    "verify verification skim skimming reading catch bottleneck attention",
+  ],
+  "did-more-than-i-asked": [
+    "scope creep unrelated extra refactored rewrote restructured renamed",
+    "deleted overwrote touched modified unasked unrequested initiative",
+    "liberties boundaries rogue overreach overstepped everything else",
+  ],
+  "dumber-after-the-update": [
+    "regression regressed update updated upgrade upgraded version model",
+    "worse dumber degraded downgraded nerfed lazier lazy quality decline",
+    "suddenly overnight release rollout",
   ],
 };

@@ -115,6 +115,38 @@ describe("setup intent routing", () => {
   });
 });
 
+describe("new category routing (2026-07-21 market-validated)", () => {
+  const cases: Array<[string, string]> = [
+    ["it churns out a 4000 line diff and i cant keep up reviewing what it writes", "faster-than-i-can-review"],
+    ["im just rubber stamping its pull requests at this point, too much to review", "faster-than-i-can-review"],
+    ["asked it to fix one function and it refactored half the repo on its own", "did-more-than-i-asked"],
+    ["it deleted files i didnt ask it to touch and rewrote the config", "did-more-than-i-asked"],
+    ["claude got so much dumber since the update, it used to nail these tasks", "dumber-after-the-update"],
+    ["quality suddenly degraded after the upgrade, feels nerfed compared to last week", "dumber-after-the-update"],
+  ];
+  for (const [description, expected] of cases) {
+    it(`routes "${description.slice(0, 50)}…" to ${expected}`, () => {
+      const result = classify(description);
+      if (result.kind === "match") expect(result.category, description).toBe(expected);
+      else if (result.kind === "ambiguous") expect([result.a, result.b], description).toContain(expected);
+      else expect.fail(`${result.kind} for a description that should route to ${expected}`);
+    });
+  }
+
+  it("does not steal neighboring complaints", () => {
+    const guards: Array<[string, string]> = [
+      ["it keeps saying the bug is fixed but the tests still fail", "confidently-wrong"],
+      ["it forgets everything we discussed between sessions", "lost-the-thread"],
+    ];
+    for (const [description, expected] of guards) {
+      const result = classify(description);
+      if (result.kind === "match") expect(result.category, description).toBe(expected);
+      else if (result.kind === "ambiguous") expect([result.a, result.b], description).toContain(expected);
+      else expect.fail(`${result.kind} for guard "${description}"`);
+    }
+  });
+});
+
 describe("classification determinism and shape", () => {
   it("is deterministic", () => {
     const a = classify("it keeps asking for confirmation after I approved");

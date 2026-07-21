@@ -71,4 +71,32 @@ export const CATEGORIES = [
       "techniques carve them until every piece does — modes, branches, and " +
       "dependencies first.",
   },
+  {
+    slug: "faster-than-i-can-review",
+    title: "Faster than I can review",
+    problem: "My AI produces more than I can review",
+    blurb:
+      "Generation stopped being the bottleneck; your attention did. These " +
+      "techniques put review effort where the risk is — adversarial " +
+      "cross-checks, depth that scales with blast radius, and samples that " +
+      "actually measure.",
+  },
+  {
+    slug: "did-more-than-i-asked",
+    title: "Did more than I asked",
+    problem: "My AI did more than I asked it to",
+    blurb:
+      "The task was one function; the diff touched nine files. These " +
+      "techniques draw the line before work starts — scope contracts, " +
+      "reversible-by-default, and stopping at the first surprise.",
+  },
+  {
+    slug: "dumber-after-the-update",
+    title: "Dumber after the update",
+    problem: "My AI got worse after an update",
+    blurb:
+      "Maybe the model changed; maybe your context rotted; maybe your " +
+      "prompts were tuned to quirks that moved. These techniques turn the " +
+      "feeling into a test you can run.",
+  },
 ];

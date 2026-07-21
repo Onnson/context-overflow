@@ -51,6 +51,9 @@ entry lives in exactly one:
 | `bloated-answers` | "I ask something simple and get a wall of text" |
 | `starting-blind` | "It starts producing before it understands the task" |
 | `problem-too-big` | "The task is too big and it (or I) can't hold it" |
+| `faster-than-i-can-review` | "My AI produces more than I can review" |
+| `did-more-than-i-asked` | "My AI did more than I asked it to" |
+| `dumber-after-the-update` | "My AI got worse after an update" |
 
 ## Body sections — all nine, in this order, none skipped
 

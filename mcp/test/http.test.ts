@@ -179,11 +179,11 @@ describe("streamable http endpoint", () => {
       expect(body.connect).toBe("https://contextoverflow.org/connect/");
     });
 
-    it("returns the eight-problem menu on no match", async () => {
+    it("returns the full problem menu on no match", async () => {
       const res = await classifyReq({ description: "how do I bake sourdough bread" });
       const body = (await res.json()) as any;
       expect(body.kind).toBe("no_match");
-      expect(body.options).toHaveLength(8);
+      expect(body.options).toHaveLength(11);
     });
 
     it("rejects empty and malformed bodies with 400, GET with 405", async () => {

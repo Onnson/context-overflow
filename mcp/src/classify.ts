@@ -49,6 +49,10 @@ const ADJACENT = new Set(
     ["bloated-answers", "stalls-instead-of-acting"],
     ["confidently-wrong", "stalls-instead-of-acting"],
     ["confidently-wrong", "agrees-with-everything"],
+    // Context rot is routinely experienced as "the model got dumber", and
+    // the review bottleneck is the receipts problem at volume.
+    ["lost-the-thread", "dumber-after-the-update"],
+    ["confidently-wrong", "faster-than-i-can-review"],
   ].map((p) => p.sort().join("|"))
 );
 

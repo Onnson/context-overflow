@@ -8,8 +8,8 @@ import { listCategories } from "../src/tools/list-categories.js";
 
 describe("corpus bundle invariants", () => {
   it("carries the full corpus", () => {
-    expect(CORPUS.entries.length).toBe(22);
-    expect(CORPUS.categories.length).toBe(8);
+    expect(CORPUS.entries.length).toBe(31);
+    expect(CORPUS.categories.length).toBe(11);
     expect(CORPUS_HASH).toMatch(/^[0-9a-f]{64}$/);
   });
 

@@ -8,8 +8,9 @@ permalink: /
 <div class="co-landing-head">
   <h1>ContextOverflow</h1>
   <p class="co-tagline">Describe what your AI keeps getting wrong — get the named technique
-  that fixes it. Learn it, teach it to your AI, get better together.
-  Free, no login.</p>
+  that fixes it. You read the fix — one short page; your AI loads the same
+  31 techniques over MCP, under the same names, and can tell you which one
+  it's running mid-task. Free, no login.</p>
 </div>
 
 <section class="co-human" markdown="1">
@@ -26,9 +27,8 @@ is enough. No jargon needed.
   <button type="submit" class="btn btn-primary">Find the technique</button>
 </form>
 <div id="co-classify-result" class="co-classify-result" aria-live="polite"></div>
-<p class="co-transparency">Questions asked here are collected anonymously — no account,
-no identity — and used to grow the library and understand how people and AI
-think together.</p>
+<p class="co-transparency">What you type is kept — anonymously, no account,
+no identity — and used to grow the library.</p>
 
 ### Or pick the complaint that sounds most like yours
 
@@ -42,17 +42,33 @@ think together.</p>
 | "I ask something simple and get a wall of text" | [Bloated answers](/bloated-answers/) |
 | "It starts producing before it understands the task" | [Starting blind](/starting-blind/) |
 | "The task is too big and it (or I) can't hold it" | [Problem too big](/problem-too-big/) |
+| "My AI produces more than I can review" | [Faster than I can review](/faster-than-i-can-review/) |
+| "My AI did more than I asked it to" | [Did more than I asked](/did-more-than-i-asked/) |
+| "My AI got worse after an update" | [Dumber after the update](/dumber-after-the-update/) |
 
-Every technique page gives you the problem, why it happens, how to fix it
-yourself, and how to have your AI assistant fix it too — ending in a worked
-prompt you'll know how to build, not just paste.
+**Every technique page ends in a worked prompt you'll know how to build, not
+just paste** — built from the problem, why it happens, how to fix it
+yourself, and how to have your AI assistant fix it too.
 
-One more thing, and it's the unusual part: your AI assistant can learn these
-same techniques, under the same names. You read *Self-Ask Before Delegating*
-here; mid-task, your assistant says *"breaking this into its sub-questions
-before answering"* — and you know exactly what it's doing. That's the premise
-of this whole place: not a smarter AI, not a dependent human — the pair,
-thinking better together.
+## What using this looks like — one technique, five minutes
+
+**Name it.** "It keeps saying the bug is fixed but the tests still fail."
+The table above routes that to *Confidently wrong* →
+[Declared Success Without Proof](/confidently-wrong/declared-success-without-proof/).
+
+**Read it.** A few minutes: "done" is a receipt — the check that ran and its
+actual output — not a sentence.
+
+**Connect your AI** (setup below). It now holds the same 31 techniques,
+under the same names you see here.
+
+**Hear the name come back.** Next time it finishes a task: *"Claiming done
+only with the receipt: ran the tests — 14 passed."* The words you just read.
+When a claim arrives without a receipt, you now have the name for what went
+wrong.
+
+That's the premise of this whole place: not a smarter AI, not a dependent
+human — the pair, thinking better together.
 
 Wanna help with more techniques? Think we forgot something?
 [Suggest it — or upvote what's already there](https://github.com/Onnson/context-overflow/discussions/categories/ideas).
@@ -63,11 +79,13 @@ The suggestion box is open, and what gets the most votes is what we build next.
 
 <section class="co-agent" markdown="1">
 
-## For your AI assistant — connect it once
+## Connect your AI — it starts naming its thinking
 
-ContextOverflow speaks MCP — a plug-in standard your AI assistant can
-install. Point it at this address and it gets the same techniques you just
-learned:
+**Connected, your AI can look these techniques up itself, mid-task** — the
+same way it already searches the web or reads your files. That's MCP, a
+plug-in standard most assistants speak. Point yours at this address and it
+pulls the same pages you just read, and can name the one it's running:
+*"one real unknown before I act."*
 
 <details open markdown="1"><summary><strong>Claude Code</strong></summary>
 
@@ -115,10 +133,12 @@ npx mcp-remote https://contextoverflow.org/mcp
 
 </details>
 
-Full details for every client are on the
-[connect page]({{ '/connect/' | relative_url }}). From then on it narrates:
-it tells you which technique it's running, in the same words you learned
-here.
+**Then give it sixty seconds to prove it's wired in.** Say: *"Ask
+ContextOverflow what it has for: it keeps saying the bug is fixed but the
+tests still fail."* It should call the library and come back naming
+*Declared Success Without Proof*. Full details for every client — and the
+check-it-worked walkthrough — are on the
+[connect page]({{ '/connect/' | relative_url }}).
 
 </section>
 
@@ -197,7 +217,7 @@ here.
         .then(function (r) { out.innerHTML = render(r); })
         .catch(function () {
           out.innerHTML =
-            "<p>Couldn’t reach the classifier — the eight problems below cover the same ground.</p>";
+            "<p>Couldn’t reach the classifier — the problems below cover the same ground.</p>";
         });
     });
   })();

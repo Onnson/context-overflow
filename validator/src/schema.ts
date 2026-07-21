@@ -9,6 +9,9 @@ export const CATEGORIES = [
   "bloated-answers",
   "starting-blind",
   "problem-too-big",
+  "faster-than-i-can-review",
+  "did-more-than-i-asked",
+  "dumber-after-the-update",
 ] as const;
 
 const idPattern = /^[a-z0-9]+(-[a-z0-9]+)*$/;

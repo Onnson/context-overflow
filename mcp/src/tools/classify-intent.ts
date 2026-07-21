@@ -27,7 +27,7 @@ export function classifyIntent(description: string): string {
   if (result.kind === "no_match") {
     const menu = [...categoryBySlug.values()].map((c) => `- "${c.problem}" → \`${c.slug}\``);
     return [
-      "That description doesn't clearly match any of the eight problems. Which of these is closest?",
+      "That description doesn't clearly match any of the library's problems. Which of these is closest?",
       "",
       ...menu,
       "",
