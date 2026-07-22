@@ -27,7 +27,7 @@ defaults:
         path: /assets/og-thesis.png
         width: 1200
         height: 630
-        alt: "ContextOverflow — like StackOverflow, but for getting smarter with your AI, not dumber because of it. 31 techniques you read; your AI runs them."
+        alt: "ContextOverflow — like StackOverflow, but for getting smarter with your AI, not dumber because of it. Techniques for you and your AI to think with, together."
 
 footer_content: >-
   Corpus licensed CC BY-NC-ND 4.0 · Site code licensed Elastic License 2.0
