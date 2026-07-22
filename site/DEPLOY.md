@@ -70,3 +70,18 @@ introduced by the deploy:
 
 Permanent fix (dashboard, zone owner): Caching → Configuration → Browser
 Cache TTL → "Respect Existing Headers".
+
+## AI-search watch (cognitive-debt authority)
+
+Target queries (baseline 2026-07-22: contextoverflow.org absent from all —
+recorded in persistent_context/workflow_state/exploration_findings.md):
+
+- what is cognitive debt AI
+- how do I avoid cognitive debt from ChatGPT
+- techniques to stop AI making me dumber
+- cognitive offloading how to prevent AI
+- is AI making me dumber what to do
+
+Re-probe weekly (jina/Google for classic results; ChatGPT/Perplexity/Gemini
+manually). Server-side truth: zone analytics hits from OAI-SearchBot,
+PerplexityBot / Perplexity-User, Claude-SearchBot — answer-engine fetches.

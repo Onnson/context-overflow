@@ -30,7 +30,8 @@ export const CATEGORIES = [
     blurb:
       "The point of working with an AI is to extend your thinking, not to " +
       "stop doing it. These techniques keep you in the reasoning loop while " +
-      "still getting the leverage.",
+      "still getting the leverage. The research calls the cost of skipping " +
+      "this *cognitive debt* — [the studies, and the counters](/cognitive-debt/).",
   },
   {
     slug: "confidently-wrong",

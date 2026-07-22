@@ -6,7 +6,7 @@ Most guides teach you to write better prompts. Context Overflow teaches somethin
 
 ## The two doors
 
-**For humans — [contextoverflow.org](https://contextoverflow.org).** A curated, categorized corpus of thinking techniques. No login, no feed. You arrive with a problem — the site opens with *"What's going wrong?"* — find the technique that fits, and learn to build it into a prompt yourself: worked, annotated examples, never copy-paste snippets.
+**For humans — [contextoverflow.org](https://contextoverflow.org).** A curated, categorized corpus of thinking techniques. No login, no feed. You arrive with a problem — the site opens with *"What's going wrong?"* — find the technique that fits, and learn to build it into a prompt yourself: worked, annotated examples, never copy-paste snippets. The research reference for what this counters: [contextoverflow.org/cognitive-debt](https://contextoverflow.org/cognitive-debt/).
 
 **For agents — MCP at `contextoverflow.org/mcp`.** The same corpus served over Streamable HTTP; free, keyless, stateless. Listed in the official MCP Registry as `org.contextoverflow/library`. Five tools:
 
