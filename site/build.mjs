@@ -39,4 +39,23 @@ for (const entry of entries) {
   writeFileSync(join(OUT, category.slug, `${entry.fm.id}.md`), page);
 }
 
-console.log(`generated ${CATEGORIES.length} category pages, ${entries.length} technique pages`);
+// Hand-written JSON-LD gate: every ld+json block in static site pages must
+// parse, or the build fails before anything ships malformed structured data.
+import { readFileSync, readdirSync } from "node:fs";
+let ldBlocks = 0;
+for (const f of readdirSync(SITE).filter((f) => f.endsWith(".md") || f.endsWith(".html"))) {
+  const text = readFileSync(join(SITE, f), "utf8");
+  for (const m of text.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) {
+    try {
+      JSON.parse(m[1]);
+      ldBlocks++;
+    } catch (e) {
+      console.error(`invalid JSON-LD in site/${f}: ${e.message}`);
+      process.exit(1);
+    }
+  }
+}
+
+console.log(
+  `generated ${CATEGORIES.length} category pages, ${entries.length} technique pages; ${ldBlocks} static JSON-LD blocks valid`
+);

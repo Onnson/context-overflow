@@ -25,6 +25,7 @@ export function renderTechnique(entry, category, edges, byId, categoryBySlug) {
     "---",
     "layout: default",
     `title: ${JSON.stringify(fm.name)}`,
+    `description: ${JSON.stringify(fm.scent)}`,
     `parent: ${JSON.stringify(category.title)}`,
     `permalink: /${category.slug}/${fm.id}/`,
     "---",
@@ -108,8 +109,23 @@ export function renderTechnique(entry, category, edges, byId, categoryBySlug) {
 
   const related = relatedBlock(edges.get(fm.id), byId, categoryBySlug);
   if (related) lines.push("", "---", "", related);
-  lines.push("", "</div>");
+  lines.push("", jsonLd(fm, category), "", "</div>");
   return lines.join("\n") + "\n";
+}
+
+// TechArticle JSON-LD per technique page — headline/description mirror the
+// page's own visible name and scent line (structured data must match text).
+function jsonLd(fm, category) {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "TechArticle",
+    headline: fm.name,
+    description: fm.scent,
+    url: `https://contextoverflow.org/${category.slug}/${fm.id}/`,
+    isPartOf: { "@type": "WebSite", name: "ContextOverflow", url: "https://contextoverflow.org" },
+    author: { "@type": "Organization", name: "ContextOverflow", url: "https://contextoverflow.org" },
+  };
+  return `<script type="application/ld+json">\n${JSON.stringify(data, null, 2)}\n</script>`;
 }
 
 function evidenceBlock(fm) {
@@ -154,6 +170,7 @@ export function renderCategory(category, navOrder, catEntries) {
     "---",
     "layout: default",
     `title: ${JSON.stringify(category.title)}`,
+    `description: ${JSON.stringify(category.problem)}`,
     `nav_order: ${navOrder}`,
     "has_children: true",
     "has_toc: false",
