@@ -20,7 +20,7 @@ Most guides teach you to write better prompts. Context Overflow teaches somethin
 
 Every response carries a **narration line**, so the agent's technique use surfaces in-conversation in the same vocabulary its human learned on the site. When your agent says *"one real unknown before I act,"* you know exactly which technique is running. Both sides of the pair get smarter; neither goes opaque. Setup for every client: [contextoverflow.org/connect](https://contextoverflow.org/connect/).
 
-## The eleven problems
+## The major problem categories we've found so far
 
 `lost-the-thread` · `doing-my-thinking` · `confidently-wrong` · `agrees-with-everything` · `stalls-instead-of-acting` · `bloated-answers` · `starting-blind` · `problem-too-big` · `faster-than-i-can-review` · `did-more-than-i-asked` · `dumber-after-the-update`
 
