@@ -12,7 +12,7 @@ Most guides teach you to write better prompts. Context Overflow teaches somethin
 
 | Tool | What it does |
 |---|---|
-| `list_categories` | The eleven problems, as a human would say them |
+| `list_categories` | The major problem categories, as a human would say them |
 | `classify_intent` | Symptom description → matching techniques; genuinely ambiguous → one clarifying question, never a guess |
 | `find_technique` | Direct lookup by name |
 | `get_technique` | Mechanism, agent instructions, verification, failure modes |
