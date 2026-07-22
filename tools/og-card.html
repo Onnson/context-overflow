@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  /* Share card, 1200x630. Render:
+     chromium-browser --headless --disable-gpu --hide-scrollbars \
+       --screenshot=site/assets/og-thesis.png --window-size=1200,630 \
+       file://$PWD/tools/og-card.html
+     Judge it at 50% scale — that's how feeds show it. */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: #0f1117;
+    color: #e8e6f0;
+    font-family: "Ubuntu", "Noto Sans", "DejaVu Sans", sans-serif;
+    position: relative;
+  }
+  .glow {
+    position: absolute;
+    top: -260px; left: 50%;
+    transform: translateX(-50%);
+    width: 900px; height: 520px;
+    background: radial-gradient(ellipse at center, rgba(124, 108, 240, 0.28) 0%, rgba(124, 108, 240, 0) 65%);
+  }
+  .frame {
+    position: relative;
+    height: 100%;
+    padding: 56px 72px 48px;
+    display: flex;
+    flex-direction: column;
+  }
+  .wordmark {
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+  .wordmark .accent { color: #a99cff; }
+  .thesis {
+    margin-top: 58px;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.24;
+    letter-spacing: -0.8px;
+  }
+  .thesis .dim { color: #918da0; }
+  .exchange {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+  .narration {
+    font-family: "Ubuntu Mono", "DejaVu Sans Mono", monospace;
+    font-size: 24px;
+    line-height: 1.4;
+    color: #c9c6d4;
+    border: 1.5px solid rgba(145, 141, 160, 0.45);
+    border-radius: 14px;
+    border-bottom-right-radius: 4px;
+    padding: 18px 24px;
+    max-width: 620px;
+  }
+  .narration .prompt { color: #56c8bd; font-weight: 700; }
+  .narration .name { color: #56c8bd; font-weight: 700; }
+  .thread { flex: 0 0 auto; color: #56c8bd; }
+  .card {
+    flex: 0 0 auto;
+    width: 300px;
+    border: 1.5px solid rgba(145, 141, 160, 0.45);
+    border-top: 5px solid #56c8bd;
+    border-radius: 12px;
+    padding: 18px 22px 20px;
+  }
+  .card .chip {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #918da0;
+  }
+  .card .title {
+    margin-top: 8px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+  .card .cat { margin-top: 8px; font-size: 16px; color: #918da0; }
+  .footer {
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-size: 21px;
+    color: #918da0;
+  }
+  .footer .url { color: #a99cff; font-weight: 700; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="frame">
+    <div class="wordmark">Context<span class="accent">Overflow</span></div>
+    <div class="thesis">Like StackOverflow, but for getting smarter<br>
+      with your AI — <span class="dim">not dumber because of it.</span></div>
+    <div class="exchange">
+      <div class="narration"><span class="prompt">❯</span> …applying the
+        <span class="name">Declared Success Without Proof</span> technique
+        from ContextOverflow.</div>
+      <svg class="thread" width="64" height="18" viewBox="0 0 64 18" aria-hidden="true">
+        <path d="M2 9 H 54" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M54 9 l -8 -5.5 M54 9 l -8 5.5" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      </svg>
+      <div class="card">
+        <div class="chip">Anti-pattern</div>
+        <div class="title">Declared Success Without Proof</div>
+        <div class="cat">in “Confidently wrong”</div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="url">contextoverflow.org</div>
+      <div>31 techniques — you read them, your AI runs them</div>
+    </div>
+  </div>
+</body>
+</html>

@@ -24,10 +24,10 @@ defaults:
       path: ""
     values:
       image:
-        path: /assets/og.png
+        path: /assets/og-thesis.png
         width: 1200
         height: 630
-        alt: "ContextOverflow — context engineering for humans and their AI: learn the named technique, teach it to your AI"
+        alt: "ContextOverflow — like StackOverflow, but for getting smarter with your AI, not dumber because of it. 31 techniques you read; your AI runs them."
 
 footer_content: >-
   Corpus licensed CC BY-NC-ND 4.0 · Site code licensed Elastic License 2.0
