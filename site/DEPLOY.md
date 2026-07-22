@@ -49,5 +49,24 @@ bundle exec jekyll serve            # preview at localhost:4000
 - `contextoverflow.org` — the only domain: this site, plus the MCP Worker
   routed at `contextoverflow.org/mcp*` and `/classify` on the same zone
 
-No analytics are configured, deliberately — none are added until everything
-is live.
+Analytics are anonymous by design: a cookieless Cloudflare Web Analytics
+beacon (in `_includes/head_custom.html`) for the site, plus per-request
+MCP and `/classify` events written to Analytics Engine — user-agent and
+country only, never IPs or identity. Details in `mcp/OBSERVABILITY.md`.
+
+## Post-deploy cache check
+
+The theme's CSS filenames never change between deploys. The zone's Browser
+Cache TTL setting, if set to a fixed value, overwrites the `max-age=0,
+must-revalidate` that Pages sends — browsers that visited before the deploy
+then keep the old stylesheet for that TTL while receiving new HTML.
+Preview subdomains bypass the zone and can never reproduce this.
+
+After every production deploy, fetch both stylesheets and grep for a rule
+introduced by the deploy:
+
+    curl -s -A "co-probe/1" https://contextoverflow.org/assets/css/just-the-docs-default.css | grep -c <new-rule>
+    curl -s -A "co-probe/1" https://contextoverflow.org/assets/css/just-the-docs-dark.css | grep -c <new-rule>
+
+Permanent fix (dashboard, zone owner): Caching → Configuration → Browser
+Cache TTL → "Respect Existing Headers".

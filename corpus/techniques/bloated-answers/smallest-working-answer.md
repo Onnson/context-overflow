@@ -4,6 +4,7 @@ name: Smallest Working Answer
 type: practice
 category: bloated-answers
 problem: "I ask something simple and get a wall of text"
+scent: "the answer is one sentence, delivered inside a restatement, three options, caveats, and an offer to elaborate"
 intent_signals:
   - answers padded with restatements and generic advice
   - having to skim past structure to find the content

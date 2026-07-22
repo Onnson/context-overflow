@@ -1,3 +1,38 @@
+// ContextOverflow layout layer.
+//
+// Tokens first: four group hues (one per problem group), keyed off the
+// data-co-theme attribute that the head script stamps when it swaps the
+// just-the-docs stylesheet — never off prefers-color-scheme directly, so
+// the tokens can't desync from the theme file swap. Components consume
+// tokens only. Hue is never the only carrier of meaning; a text label
+// always accompanies it.
+
+:root {
+  --co-hue-trust: #0f766e; // "Can I believe it?"
+  --co-hue-exec: #b45309; // "It's not doing what I asked"
+  --co-hue-fit: #be3a63; // "It doesn't fit"
+  --co-hue-you: #5e4fd8; // "What's it doing to me?" — the brand violet
+  --co-ink-quiet: #6d6a78;
+  --co-card-bg: rgba(109, 106, 120, 0.07);
+  --co-card-border: rgba(109, 106, 120, 0.35);
+}
+
+html[data-co-theme="dark"] {
+  --co-hue-trust: #56c8bd;
+  --co-hue-exec: #e0a458;
+  --co-hue-fit: #e57b9a;
+  --co-hue-you: #a99cff;
+  --co-ink-quiet: #918da0;
+  --co-card-bg: rgba(145, 141, 160, 0.09);
+  --co-card-border: rgba(145, 141, 160, 0.4);
+}
+
+// Group hue scopes — set the local hue every accent below consumes.
+.co-group-trust { --co-hue: var(--co-hue-trust); }
+.co-group-exec { --co-hue: var(--co-hue-exec); }
+.co-group-fit { --co-hue: var(--co-hue-fit); }
+.co-group-you { --co-hue: var(--co-hue-you); }
+
 // Slightly heavier type across the whole site.
 body {
   font-weight: 500;
@@ -14,7 +49,26 @@ h6,
 }
 
 strong {
-  font-weight: 800;
+  font-weight: 700;
+}
+
+// Section rhythm on content pages: space is the divider between sections.
+.main-content h2 {
+  margin-top: 2.75rem;
+}
+
+// Quiet the theme's hard-colored label pills so the group hue owns the
+// color channel; the chip's text does the telling. Mirrors the gem's
+// :not(g) guard so specificity ties and source order wins.
+.label:not(g),
+.label-blue:not(g),
+.label-green:not(g),
+.label-purple:not(g),
+.label-red:not(g),
+.label-yellow:not(g) {
+  background: transparent;
+  border: 1px solid var(--co-card-border);
+  color: var(--co-ink-quiet);
 }
 
 // Dark-mode toggle button, rendered in the sidebar footer.
@@ -22,7 +76,7 @@ strong {
   margin: 0.75rem 1rem;
 }
 
-// Landing page: two doors, side by side, no sidebar.
+// Landing page head, centered; the hero exchange inside it reads left.
 .co-landing-head {
   max-width: 66rem;
   margin: 2.5rem auto 1.5rem;
@@ -35,11 +89,144 @@ strong {
   }
 }
 
+.co-subtitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  max-width: 42rem;
+  margin: 0 auto 0.75rem;
+}
+
 .co-tagline {
   font-size: 1.05rem;
   opacity: 0.85;
   max-width: 42rem;
   margin: 0 auto;
+}
+
+// Hero exchange — the one bold object on the site. A real classify_intent
+// narration, with a thread from the technique name to its page card.
+.co-hx {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 46rem;
+  margin: 1.75rem auto 0;
+  text-align: left;
+}
+
+.co-hx-chat {
+  flex: 1 1 24rem;
+  min-width: 16rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.co-hx-you,
+.co-hx-agent {
+  margin: 0;
+  padding: 0.55rem 0.8rem;
+  border-radius: 0.6rem;
+  font-size: 0.86rem;
+  line-height: 1.45;
+}
+
+.co-hx-you {
+  background: var(--co-card-bg);
+  align-self: flex-start;
+  max-width: 88%;
+  border-bottom-left-radius: 0.15rem;
+}
+
+.co-hx-agent {
+  font-family: "SFMono-Regular", menlo, consolas, monospace;
+  font-size: 0.76rem;
+  border: 1px solid var(--co-card-border);
+  align-self: flex-end;
+  max-width: 94%;
+  border-bottom-right-radius: 0.15rem;
+}
+
+.co-hx-name {
+  color: var(--co-hue-trust);
+}
+
+.co-hx-thread {
+  flex: 0 0 3.5rem;
+  width: 3.5rem;
+  height: 1rem;
+  color: var(--co-hue-trust);
+  overflow: visible;
+}
+
+// Visible by default; the one-time draw runs only where motion is welcome,
+// so paused-animation contexts still see the thread.
+@media (prefers-reduced-motion: no-preference) {
+  .co-hx-line {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: co-draw 0.7s 0.4s ease-out forwards;
+  }
+}
+
+@keyframes co-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.co-hx-card {
+  flex: 0 1 13rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.7rem 0.9rem 0.8rem;
+  border: 1px solid var(--co-card-border);
+  border-top: 3px solid var(--co-hue-trust);
+  border-radius: 0.5rem;
+  text-decoration: none;
+  color: inherit; // a real link, but it reads as a page, not link text
+
+  &:hover {
+    border-color: var(--co-hue-trust);
+  }
+}
+
+.co-hx-card-chip {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--co-ink-quiet);
+}
+
+.co-hx-card-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.co-hx-card-cat {
+  font-size: 0.72rem;
+  color: var(--co-ink-quiet);
+}
+
+@media (max-width: 40rem) {
+  .co-hx {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .co-hx-thread {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .co-hx-line {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
 }
 
 // Stacked landing: the human door gets the full view first; the agent's
@@ -79,6 +266,43 @@ strong {
   }
 }
 
+// The grouped problem nav — four blocks, one hue each, rows stay quiet.
+.co-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 1.75rem;
+}
+
+.co-group {
+  border: 1px solid var(--co-card-border);
+  border-top: 3px solid var(--co-hue);
+  border-radius: 0.5rem;
+  padding: 0.8rem 1.1rem 0.55rem;
+
+  ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+  }
+
+  li {
+    margin: 0.5rem 0;
+    font-size: 0.92rem;
+    line-height: 1.4;
+  }
+}
+
+// Doubled scope so the margin reset outranks the theme's .main-content h4.
+.co-group .co-group-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  color: var(--co-hue);
+  margin: 0 0 0.35rem;
+}
+
 .co-classify {
   display: flex;
   flex-direction: column;
@@ -116,10 +340,142 @@ strong {
   margin-top: 0.5rem;
 }
 
+// Contributor CTA — the "suggest a technique" nudge on the landing and in
+// the no-match classifier result. Quiet, but present.
+.co-tellus {
+  font-size: 0.9rem;
+  opacity: 0.85;
+  margin-top: 1.25rem;
+}
+
 .co-visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
   overflow: hidden;
   clip: rect(0 0 0 0);
+}
+
+// ---------------------------------------------------------------------------
+// Generated technique + category pages (.co-page wraps the whole body).
+
+// The page announces its group: a short hue rule above the title, and the
+// problem quote picks up the same hue softly.
+.co-page > h1::before {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 3px;
+  background: var(--co-hue);
+  border-radius: 2px;
+  margin-bottom: 0.9rem;
+}
+
+.co-page > blockquote {
+  border-left: 3px solid var(--co-hue);
+  opacity: 0.92;
+}
+
+// Voice rails: who this section speaks to. Recognition, not salience —
+// a quiet left rule and an eyebrow; the agent's voice additionally sounds
+// in mono via .co-narration.
+.co-voice {
+  border-left: 2px solid var(--co-card-border);
+  padding-left: 1.15rem;
+  margin: 2.75rem 0;
+
+  &::before {
+    display: block;
+    font-size: 0.66rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--co-ink-quiet);
+  }
+
+  > h2:first-of-type {
+    margin-top: 0.2rem;
+  }
+}
+
+.co-voice-you::before {
+  content: "You";
+}
+
+.co-voice-agent::before {
+  content: "Your agent";
+}
+
+// Narration — what the agent actually says, so it reads as speech from a
+// terminal: mono, a prompt mark, no code-block chrome.
+.co-narration blockquote {
+  font-family: "SFMono-Regular", menlo, consolas, monospace;
+  font-size: 0.82em;
+  border-left: none;
+  background: var(--co-card-bg);
+  border-radius: 0.5rem;
+  padding: 0.65rem 0.95rem;
+  margin-left: 0;
+
+  > p:first-child::before {
+    content: "\276F  "; // ❯
+    color: var(--co-hue);
+    font-weight: 700;
+  }
+}
+
+// Depth on demand: failure modes and evidence collapse behind a
+// heading-styled summary. Deep links still work — the summary keeps the
+// old heading id, and head_custom.html opens ancestors on hash.
+.co-depth {
+  margin: 2.4rem 0;
+
+  > summary {
+    cursor: pointer;
+    list-style: none;
+    font-size: 1.35rem;
+    font-weight: 700;
+    line-height: 1.25;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::after {
+      content: "\25B8"; // ▸
+      display: inline-block;
+      margin-left: 0.5rem;
+      font-size: 0.85em;
+      color: var(--co-ink-quiet);
+      transition: transform 0.15s ease;
+    }
+  }
+
+  &[open] > summary::after {
+    transform: rotate(90deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .co-depth > summary::after {
+    transition: none;
+  }
+}
+
+// The prompt — the page's destination and its one high-salience object.
+.co-prompt {
+  margin: 2.75rem 0;
+  padding: 1.15rem 1.4rem 1.3rem;
+  background: var(--co-card-bg);
+  border: 1px solid var(--co-card-border);
+  border-left: 4px solid var(--co-hue);
+  border-radius: 0.5rem;
+
+  > h2:first-child {
+    margin-top: 0;
+  }
+
+  blockquote {
+    border-left-color: var(--co-card-border);
+  }
 }

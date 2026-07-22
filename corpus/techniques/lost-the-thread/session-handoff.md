@@ -4,6 +4,7 @@ name: Session Handoff Package
 type: protocol
 category: lost-the-thread
 problem: "My AI forgets everything between sessions"
+scent: "the next session has the files but no idea what was half-finished or what came next"
 intent_signals:
   - a session is ending mid-task and the next one needs to continue
   - handing work from one AI or chat to another

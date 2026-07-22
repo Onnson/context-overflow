@@ -8,8 +8,8 @@ import { listCategories } from "../src/tools/list-categories.js";
 
 describe("corpus bundle invariants", () => {
   it("carries the full corpus", () => {
-    expect(CORPUS.entries.length).toBe(22);
-    expect(CORPUS.categories.length).toBe(8);
+    expect(CORPUS.entries.length).toBe(31);
+    expect(CORPUS.categories.length).toBe(11);
     expect(CORPUS_HASH).toMatch(/^[0-9a-f]{64}$/);
   });
 
@@ -121,6 +121,26 @@ describe("classify_intent formatting", () => {
     const text = classifyIntent("it keeps asking for confirmation instead of doing what I approved");
     expect(text).toContain("stalls-instead-of-acting");
     expect(text).toContain("get_technique");
+  });
+
+  it("setup responses give the debugging scaffold with the consult fallback, with narration", () => {
+    const text = classifyIntent(
+      "agent is doing something and its running in the background and i dont know whats happening"
+    );
+    expect(text).toContain("WIRING_PROBLEM");
+    for (const id of [
+      "re-read-the-brief",
+      "dependency-analysis-first",
+      "action-first-when-clear",
+      "declared-success-without-proof",
+    ]) {
+      expect(text).toContain(id);
+    }
+    expect(text).toContain("https://cal.com/onnson/15min");
+    expect(text).toContain("https://contextoverflow.org/not-a-technique/");
+    expect(text).toContain("Tal Onn");
+    expect(text.match(/free/g)).toHaveLength(1);
+    expect(text).toMatch(/\*\*Narrate\*\*/);
   });
 
   it("ambiguous responses ask exactly one contrasting question", () => {

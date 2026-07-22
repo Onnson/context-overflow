@@ -9,6 +9,9 @@ export const CATEGORIES = [
   "bloated-answers",
   "starting-blind",
   "problem-too-big",
+  "faster-than-i-can-review",
+  "did-more-than-i-asked",
+  "dumber-after-the-update",
 ] as const;
 
 const idPattern = /^[a-z0-9]+(-[a-z0-9]+)*$/;
@@ -22,6 +25,10 @@ export const frontmatterSchema = z
     type: z.enum(["practice", "anti-pattern", "protocol"]),
     category: z.enum(CATEGORIES),
     problem: z.string().min(1),
+    // One complaint-voiced line (≤ ~18 words) locating this technique inside
+    // its category — rendered as the category page's "which version is
+    // yours?" scent line. Must stay faithful to the Problem section.
+    scent: z.string().min(1),
     intent_signals: z.array(z.string().min(1)).min(1),
     related: z
       .object({

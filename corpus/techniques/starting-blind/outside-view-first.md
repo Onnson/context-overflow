@@ -4,6 +4,7 @@ name: Outside View First
 type: practice
 category: starting-blind
 problem: "It starts producing before it understands the task"
+scent: "the estimate was detailed and confident, and the work still ran over in the usual ways"
 intent_signals:
   - plans and estimates built purely from the task's own details
   - '"this should be straightforward" preceding a quagmire'

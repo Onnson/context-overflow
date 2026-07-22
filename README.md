@@ -45,3 +45,12 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). Short version: issues and discussion are
 
 - `corpus/` — [CC BY-NC-ND 4.0](corpus/LICENSE.md)
 - everything else — [Elastic License 2.0](LICENSE)
+
+**Why these licenses.** Context Overflow is free to read, learn from, and use —
+by people and by their AI. AI crawlers are welcome, and the corpus is served
+live to agents over MCP, because a shared vocabulary between a human and their
+assistant is the entire point. What the licenses reserve is *commercial
+repackaging*: the corpus may not be rebundled or sold as a competing product
+(NC-ND), and the code may not be offered as a hosted service (Elastic 2.0).
+Learn it, teach it to your agent, build it into your prompts — just don't
+repackage it.

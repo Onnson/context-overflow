@@ -4,6 +4,7 @@ name: Branch Before You Commit
 type: practice
 category: problem-too-big
 problem: "The task is too big and it (or I) can't hold it"
+scent: "it committed to the first design it thought of; the 'alternatives' were invented afterward to lose"
 intent_signals:
   - the AI committing to the first approach it generates
   - big design decisions arriving as faits accomplis

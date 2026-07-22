@@ -4,6 +4,7 @@ name: Recentering Pause
 type: protocol
 category: lost-the-thread
 problem: "My AI forgets everything between sessions"
+scent: "mid-session the answers go adjacent to what you asked, and every correction drifts again a few turns later"
 intent_signals:
   - the AI's answers drift off-topic mid-session
   - responses reference the wrong task or mix up two workstreams

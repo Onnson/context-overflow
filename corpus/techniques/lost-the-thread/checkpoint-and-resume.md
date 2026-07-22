@@ -4,6 +4,7 @@ name: Named Checkpoints
 type: protocol
 category: lost-the-thread
 problem: "My AI forgets everything between sessions"
+scent: "about to try something risky, and the good state from an hour ago exists only as a feeling"
 intent_signals:
   - wanting to save the state of a conversation before trying something risky
   - long sessions drifting until early decisions get lost

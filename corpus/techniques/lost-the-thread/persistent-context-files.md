@@ -4,6 +4,7 @@ name: Persistent Context as Files
 type: protocol
 category: lost-the-thread
 problem: "My AI forgets everything between sessions"
+scent: "every session starts with re-explaining the project, or it proposes the thing you ruled out last month"
 intent_signals:
   - re-explaining the project at the start of every session
   - the AI confidently redoing work that was already done

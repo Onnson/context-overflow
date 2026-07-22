@@ -4,6 +4,7 @@ name: The Actually-Right Check
 type: practice
 category: agrees-with-everything
 problem: "My AI tells me I'm right even when I'm not"
+scent: "you wanted a thinking partner and got a mirror with good manners"
 intent_signals:
   - wanting agreement to mean something
   - suspecting praise is automatic rather than earned

@@ -4,6 +4,7 @@ name: Declared Success Without Proof
 type: anti-pattern
 category: confidently-wrong
 problem: "My AI states things that turn out to be false"
+scent: "\"done, everything works\" \u2014 then you check, and the tests were never run"
 intent_signals:
   - '"everything works now" without any test output shown'
   - completion claims that unravel on first manual check

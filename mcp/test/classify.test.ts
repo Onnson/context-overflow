@@ -31,6 +31,122 @@ describe("golden classification fixtures", () => {
   }
 });
 
+describe("setup intent routing", () => {
+  // The first real user's query, verbatim (2026-07-19, Analytics Engine).
+  it("routes background-agent-visibility complaints to setup", () => {
+    const result = classify(
+      "agent is doing something and its running in the background and i dont know whats happening"
+    );
+    expect(result.kind).toBe("setup");
+  });
+
+  it("routes connection problems to setup", () => {
+    expect(classify("the mcp server wont connect no matter what i configure").kind).toBe("setup");
+  });
+
+  it("routes credentials-and-installation questions to setup", () => {
+    expect(classify("where do i put the api key and how do i set it up in the config").kind).toBe("setup");
+  });
+
+  it("does not steal context-loss complaints that mention background docs", () => {
+    const result = classify(
+      "tired of pasting the same background doc into every new chat just so it knows what we're doing"
+    );
+    // Same bar as the golden suite: never setup, and lost-the-thread offered
+    // (an ambiguous that includes it is a correct clarifying question).
+    expect(result.kind).not.toBe("setup");
+    if (result.kind === "match") expect(result.category).toBe("lost-the-thread");
+    else if (result.kind === "ambiguous") expect([result.a, result.b]).toContain("lost-the-thread");
+    else expect.fail(`unexpected ${result.kind}`);
+  });
+
+  it("does not steal reasoning complaints", () => {
+    for (const description of [
+      "it keeps saying the bug is fixed but the tests still fail",
+      "I ask something simple and get a wall of text",
+      "it starts coding before understanding what i asked",
+    ]) {
+      expect(classify(description).kind, description).not.toBe("setup");
+    }
+  });
+
+  // The four confirmed false positives from the 2026-07-21 adversarial
+  // audit: artifact phrases ("api key", "mcp server", "in the background")
+  // appearing without any broken-mechanics signal must not anchor setup.
+  it("artifact mentions without mechanics stay with their category", () => {
+    for (const description of [
+      "I asked how to rename an api key constant in one file and got four pages of security philosophy back",
+      "I asked which api key naming scheme is cleaner and instead of an opinion it just mirrored my preference back at me",
+      "Ever since it designed my mcp server for me I realize I no longer understand my own architecture at all",
+      "It promised to keep the refactor plan in the background of our conversation but ten messages later it had forgotten every step",
+    ]) {
+      expect(classify(description).kind, description).not.toBe("setup");
+    }
+  });
+
+  // The five confirmed false negatives from the same audit: genuine
+  // setup/usage complaints that previously mis-matched into categories.
+  it("recovers genuine setup complaints the first phrase list missed", () => {
+    for (const description of [
+      "please where I find the logs of the agent? it finish but I dont know what it do",
+      "i got charged twice this month and cant find where to see my invoice or downgrade the plan",
+      "which version am i even on? the changelog says the feature shipped but i dont have the menu option",
+      "install script errors out with permission denied on npm global, what am i doing wrong",
+      "billing page says free tier but the api returns 429 quota exceeded on the first request",
+    ]) {
+      expect(classify(description).kind, description).toBe("setup");
+    }
+  });
+
+  // Round-2 audit findings: artifact phrases in first-person usage
+  // questions ("where do i put my api key") or with reload/timeout
+  // mechanics are genuine setup even though nothing says "broken".
+  it("recovers artifact-anchored usage questions and reload/timeout mechanics", () => {
+    for (const description of [
+      "where do i put my api key so the cli stops asking me every session",
+      "keep hitting the rate limit after like 10 messages, is there a way to raise it or check my quota?",
+      "i set the env var like the readme says but the tool still cant find my token",
+      "my config file changes get ignored, do i need to restart something for them to take effect",
+      "usage limit reset time is confusing, when does my quota actually refresh?",
+      "mcp server shows connected in settings but every tool call times out",
+    ]) {
+      expect(classify(description).kind, description).toBe("setup");
+    }
+  });
+});
+
+describe("new category routing (2026-07-21 market-validated)", () => {
+  const cases: Array<[string, string]> = [
+    ["it churns out a 4000 line diff and i cant keep up reviewing what it writes", "faster-than-i-can-review"],
+    ["im just rubber stamping its pull requests at this point, too much to review", "faster-than-i-can-review"],
+    ["asked it to fix one function and it refactored half the repo on its own", "did-more-than-i-asked"],
+    ["it deleted files i didnt ask it to touch and rewrote the config", "did-more-than-i-asked"],
+    ["claude got so much dumber since the update, it used to nail these tasks", "dumber-after-the-update"],
+    ["quality suddenly degraded after the upgrade, feels nerfed compared to last week", "dumber-after-the-update"],
+  ];
+  for (const [description, expected] of cases) {
+    it(`routes "${description.slice(0, 50)}…" to ${expected}`, () => {
+      const result = classify(description);
+      if (result.kind === "match") expect(result.category, description).toBe(expected);
+      else if (result.kind === "ambiguous") expect([result.a, result.b], description).toContain(expected);
+      else expect.fail(`${result.kind} for a description that should route to ${expected}`);
+    });
+  }
+
+  it("does not steal neighboring complaints", () => {
+    const guards: Array<[string, string]> = [
+      ["it keeps saying the bug is fixed but the tests still fail", "confidently-wrong"],
+      ["it forgets everything we discussed between sessions", "lost-the-thread"],
+    ];
+    for (const [description, expected] of guards) {
+      const result = classify(description);
+      if (result.kind === "match") expect(result.category, description).toBe(expected);
+      else if (result.kind === "ambiguous") expect([result.a, result.b], description).toContain(expected);
+      else expect.fail(`${result.kind} for guard "${description}"`);
+    }
+  });
+});
+
 describe("classification determinism and shape", () => {
   it("is deterministic", () => {
     const a = classify("it keeps asking for confirmation after I approved");

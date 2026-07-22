@@ -168,11 +168,22 @@ describe("streamable http endpoint", () => {
       expect(body.options).toHaveLength(2);
     });
 
-    it("returns the eight-problem menu on no match", async () => {
+    it("routes setup complaints to the free consultation", async () => {
+      const res = await classifyReq({
+        description: "agent is doing something and its running in the background and i dont know whats happening",
+      });
+      const body = (await res.json()) as any;
+      expect(body.kind).toBe("setup");
+      expect(body.url).toBe("https://contextoverflow.org/not-a-technique/");
+      expect(body.cal).toContain("https://cal.com/onnson/15min");
+      expect(body.connect).toBe("https://contextoverflow.org/connect/");
+    });
+
+    it("returns the full problem menu on no match", async () => {
       const res = await classifyReq({ description: "how do I bake sourdough bread" });
       const body = (await res.json()) as any;
       expect(body.kind).toBe("no_match");
-      expect(body.options).toHaveLength(8);
+      expect(body.options).toHaveLength(11);
     });
 
     it("rejects empty and malformed bodies with 400, GET with 405", async () => {

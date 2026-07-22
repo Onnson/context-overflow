@@ -19,6 +19,11 @@ name: Action-First When Clear, Ask When Unclear
 type: practice                     # practice | anti-pattern | protocol
 category: stalls-instead-of-acting # one of the taxonomy categories below
 problem: "The AI stalls instead of acting"   # the problem as the human experiences it
+scent: "it recaps, asks, and offers options — anything but the approved work"
+                                   # one complaint-voiced line (≤ ~18 words) locating this
+                                   # technique inside its category; rendered on the category
+                                   # page as the "which version of it is yours?" line; must
+                                   # stay faithful to the Problem section
 intent_signals:                    # phrases/behaviors that indicate this entry applies;
   - repeated confirmation requests after a clear instruction   # used by MCP classify/find
   - approve/edit/rewrite closers
@@ -51,6 +56,9 @@ entry lives in exactly one:
 | `bloated-answers` | "I ask something simple and get a wall of text" |
 | `starting-blind` | "It starts producing before it understands the task" |
 | `problem-too-big` | "The task is too big and it (or I) can't hold it" |
+| `faster-than-i-can-review` | "My AI produces more than I can review" |
+| `did-more-than-i-asked` | "My AI did more than I asked it to" |
+| `dumber-after-the-update` | "My AI got worse after an update" |
 
 ## Body sections — all nine, in this order, none skipped
 

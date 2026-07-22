@@ -11,6 +11,22 @@ markdown: kramdown
 search_enabled: true
 heading_anchors: true
 
+plugins:
+  - jekyll-sitemap
+
+# Site-wide share-card image. jekyll-seo-tag reads page.image (via these
+# defaults), emits an absolute og:image, and upgrades twitter:card to
+# summary_large_image. Per-page front-matter `image:` overrides this.
+defaults:
+  - scope:
+      path: ""
+    values:
+      image:
+        path: /assets/og.png
+        width: 1200
+        height: 630
+        alt: "ContextOverflow — context engineering for humans and their AI: learn the named technique, teach it to your AI"
+
 footer_content: >-
   Corpus licensed CC BY-NC-ND 4.0 · Site code licensed Elastic License 2.0
 

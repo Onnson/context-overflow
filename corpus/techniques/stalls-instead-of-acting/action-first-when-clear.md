@@ -4,6 +4,7 @@ name: Action-First When Clear, Ask When Unclear
 type: practice
 category: stalls-instead-of-acting
 problem: "The AI stalls instead of acting"
+scent: "it narrates the plan and waits for a nod, or guesses when it should ask"
 intent_signals:
   - the AI narrates what it is about to do instead of doing it
   - commentary and plans arrive before any action is taken

@@ -4,6 +4,7 @@ name: Self-Ask Before Delegating
 type: practice
 category: doing-my-thinking
 problem: "I'm outsourcing my thinking and getting dumber"
+scent: "you pasted the problem before reading it, and now you can't judge the answer that came back"
 intent_signals:
   - pasting a problem to the AI before reading it yourself
   - accepting answers without being able to say what a good answer would look like

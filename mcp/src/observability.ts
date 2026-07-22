@@ -18,8 +18,11 @@ export interface CoEvent {
   clientName?: string;
 }
 
+import type { RateLimiter } from "./ratelimit.js";
+
 export interface Env {
   ANALYTICS_ENGINE?: AnalyticsEngineDataset;
+  MCP_LIMITER?: RateLimiter;
 }
 
 const QUERY_LIMIT = 500;

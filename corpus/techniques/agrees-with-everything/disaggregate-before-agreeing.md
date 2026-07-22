@@ -4,6 +4,7 @@ name: Disaggregate Before Agreeing
 type: practice
 category: agrees-with-everything
 problem: "My AI tells me I'm right even when I'm not"
+scent: "your idea is half right, but the answer is all yes or all no, never which half"
 intent_signals:
   - claims that feel mostly right but get endorsed wholesale
   - big-picture statements mixing solid points with stowaway assumptions
