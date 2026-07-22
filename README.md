@@ -6,13 +6,13 @@ Most guides teach you to write better prompts. Context Overflow teaches somethin
 
 ## The two doors
 
-**For humans — [contextoverflow.org](https://contextoverflow.org).** A curated, categorized corpus of thinking techniques. No login, no feed. You arrive with a problem — the site opens with *"What are you trying to get done?"* — find the technique that fits, and learn to build it into a prompt yourself: worked, annotated examples, never copy-paste snippets.
+**For humans — [contextoverflow.org](https://contextoverflow.org).** A curated, categorized corpus of thinking techniques. No login, no feed. You arrive with a problem — the site opens with *"What's going wrong?"* — find the technique that fits, and learn to build it into a prompt yourself: worked, annotated examples, never copy-paste snippets.
 
-**For agents — MCP at `contextoverflow.org/mcp`.** The same corpus served over Streamable HTTP; free, keyless, stateless. Five tools:
+**For agents — MCP at `contextoverflow.org/mcp`.** The same corpus served over Streamable HTTP; free, keyless, stateless. Listed in the official MCP Registry as `org.contextoverflow/library`. Five tools:
 
 | Tool | What it does |
 |---|---|
-| `list_categories` | The eight problems, as a human would say them |
+| `list_categories` | The eleven problems, as a human would say them |
 | `classify_intent` | Symptom description → matching techniques; genuinely ambiguous → one clarifying question, never a guess |
 | `find_technique` | Direct lookup by name |
 | `get_technique` | Mechanism, agent instructions, verification, failure modes |
@@ -20,9 +20,9 @@ Most guides teach you to write better prompts. Context Overflow teaches somethin
 
 Every response carries a **narration line**, so the agent's technique use surfaces in-conversation in the same vocabulary its human learned on the site. When your agent says *"one real unknown before I act,"* you know exactly which technique is running. Both sides of the pair get smarter; neither goes opaque. Setup for every client: [contextoverflow.org/connect](https://contextoverflow.org/connect/).
 
-## The eight problems
+## The eleven problems
 
-`lost-the-thread` · `doing-my-thinking` · `confidently-wrong` · `agrees-with-everything` · `stalls-instead-of-acting` · `bloated-answers` · `starting-blind` · `problem-too-big`
+`lost-the-thread` · `doing-my-thinking` · `confidently-wrong` · `agrees-with-everything` · `stalls-instead-of-acting` · `bloated-answers` · `starting-blind` · `problem-too-big` · `faster-than-i-can-review` · `did-more-than-i-asked` · `dumber-after-the-update`
 
 Each named for the problem as you experience it — "My AI forgets everything between sessions," "It tells me I'm right even when I'm not." Every technique lives in exactly one, and answers it.
 
@@ -39,7 +39,7 @@ Entries are grounded in real production use (generalized field notes) or publish
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md). Short version: issues and discussion are open; corpus and code contributions require a CLA (activating shortly after launch), and every entry must pass the validator and carry real evidence.
+See [CONTRIBUTING.md](CONTRIBUTING.md). Short version: the front door is the [suggestion box](https://github.com/Onnson/context-overflow/discussions/categories/ideas) — propose techniques, vote on what gets built next; issues are open for evidence-based disagreement. Corpus and code PRs aren't accepted right now; every entry that ships passes the validator and carries real evidence.
 
 ## License
 
