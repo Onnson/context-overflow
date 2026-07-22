@@ -9,7 +9,7 @@ export const GROUPS = [
   { slug: "you", label: "What's it doing to me?" },
 ];
 
-// Human-facing copy for the eleven problem-first categories.
+// Human-facing copy for the major problem categories.
 // Array order is sidebar order (after Home).
 export const CATEGORIES = [
   {

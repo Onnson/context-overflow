@@ -29,7 +29,7 @@ describe the problem:
 
 | Tool | What it does |
 |---|---|
-| `list_categories` | The eleven problems, as you'd say them |
+| `list_categories` | The major problem categories, as you'd say them |
 | `classify_intent` | Describe what's going wrong → matched techniques; if the description fits two problems, it asks one clarifying question instead of guessing; wiring/setup issues get a [debugging scaffold your agent runs itself](/not-a-technique/), with a human fallback |
 | `find_technique` | Direct lookup when you already know the name |
 | `get_technique` | The technique's mechanism, agent instructions, verification, and failure modes |
