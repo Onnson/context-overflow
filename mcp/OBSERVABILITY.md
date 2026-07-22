@@ -52,8 +52,12 @@ curl "https://api.cloudflare.com/client/v4/accounts/<ACCOUNT_ID>/analytics_engin
 SELECT blob2 AS tool, sum(_sample_interval) AS calls
 FROM "context-overflow"
 WHERE timestamp > NOW() - INTERVAL '30' DAY
-  AND blob7 NOT IN ('curl/8.5.0','curl-probe/1.0','SmitheryBot/1.0','ducks-in-a-row-probe/1.0')
-  AND blob9 NOT IN ('probe','redteam-probe','registry-probe')
+  AND blob7 NOT IN ('curl/8.5.0','curl-probe/1.0','SmitheryBot/1.0','ducks-in-a-row-probe/1.0','co-probe/1')
+  AND blob9 NOT IN ('probe','redteam-probe','registry-probe','glama')
+  AND lower(blob9) NOT LIKE '%probe%'
+  AND lower(blob9) NOT LIKE '%scanner%'
+  AND lower(blob9) NOT LIKE '%grader%'
+  AND lower(blob9) NOT LIKE '%enricher%'
 GROUP BY tool ORDER BY calls DESC
 SQL
 ```
@@ -81,3 +85,22 @@ Run future self-checks with a single user-agent — `co-probe/1` — so new
 contamination is one string to add here. The six saved dashboard queries are
 left unfiltered (probe volume is a handful of identifiable rows); use the SQL
 above for the clean signal.
+
+## Registry-era noise (since 2026-07-22)
+
+Publishing to the official MCP Registry brought the aggregator ecosystem:
+directory health-checks (glama, hourly), marketplace ingesters, security
+scanners, graders, and a liveness monitor (glimind SentinelOracle, ~every
+5.5 min). All of it arrives as `initialize` events only — these clients
+never call tools — so every saved query filtered on `co.event=tool_call`
+or `co.outcome` is inherently clean. The two-layer denylist above (exact
+names + `NOT LIKE` patterns on clientName) keeps the initialize-based
+views readable; scanners reliably self-label (`-probe`, `-scanner`,
+`-grader`, `-enricher`). The dashboard's "CO / Clients & countries" saved
+query includes this noise — the SQL here is the source of truth for it.
+
+**"First real user" definition (tightened):** a `classify_api` or
+`tool_call` event carrying an actual query, or an `initialize` from an
+end-user client (e.g. `claude-ai`, Cursor, VS Code) — NOT any client
+matching the denylist patterns above. Raw events are never filtered at
+write time; all hygiene is read-time.
