@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "org.contextoverflow/library",
+  "title": "ContextOverflow",
+  "description": "Describe what's going wrong with your AI; get the named technique both of you can read. No auth.",
+  "version": "1.0.0",
+  "websiteUrl": "https://contextoverflow.org",
+  "repository": {
+    "url": "https://github.com/Onnson/context-overflow",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://contextoverflow.org/mcp"
+    }
+  ]
+}
