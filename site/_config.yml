@@ -11,6 +11,8 @@ markdown: kramdown
 search_enabled: true
 heading_anchors: true
 
+include: [".well-known"]
+
 plugins:
   - jekyll-sitemap
 

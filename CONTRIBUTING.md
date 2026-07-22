@@ -1,17 +1,18 @@
 # Contributing to Context Overflow
 
 Thanks for wanting to make the corpus better. A few things are different
-here than in a typical open-source repo — read this before opening a PR.
+here than in a typical open-source repo — read this before suggesting an entry.
 
 ## The short version
 
 - **Issues and discussion: open now.** Found a technique that misfires, a
   claim that doesn't hold, a category that doesn't fit your problem? Open an
   issue — disagreement with evidence is the most valuable contribution there is.
-- **Corpus and code PRs: require a signed CLA.** The corpus is licensed
-  CC BY-NC-ND 4.0 and the code Elastic License 2.0; a contributor license
-  agreement keeps that licensing sustainable. The CLA flow activates shortly
-  after launch — PRs opened before then will wait on it.
+- **Corpus and code PRs: not accepted right now.** The way in is the
+  [ideas board](https://github.com/Onnson/context-overflow/discussions/categories/ideas):
+  propose a technique or a problem we're missing, and upvote what you want
+  built — the most-voted suggestions are what ships next. The sections
+  below describe the bar a suggestion clears to become an entry.
 
 ## Contributing a technique
 
