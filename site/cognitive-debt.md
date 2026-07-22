@@ -86,7 +86,7 @@ build rather than paste:
   — "done" without a receipt ends your attention early. Completion claims
   come with the check that ran.
 
-The whole library works this way: [eleven problems](/), each named the way
+The whole library works this way: [major problem categories](/), each named the way
 you'd complain about it, each with techniques that state their mechanism,
 their verification, and their failure modes.
 
