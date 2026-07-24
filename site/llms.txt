@@ -1,0 +1,68 @@
+# ContextOverflow
+
+> A library of named thinking techniques for humans and AI agents, built against cognitive debt. Both of you read the same techniques under the same names: shared rails for a single train of thought between you and your AI. Humans read it at contextoverflow.org; agents load it over MCP at https://contextoverflow.org/mcp (Streamable HTTP, no auth, free).
+
+## Core pages
+
+- [Home](https://contextoverflow.org/)
+- [Cognitive debt](https://contextoverflow.org/cognitive-debt/)
+- [Cognitive debt in code](https://contextoverflow.org/cognitive-debt/in-code/)
+- [Connect your agent (MCP setup)](https://contextoverflow.org/connect/)
+- [Glossary](https://contextoverflow.org/glossary/)
+- [What is not a technique](https://contextoverflow.org/not-a-technique/)
+
+## Techniques by problem
+
+### agrees with everything
+- [disaggregate before agreeing](https://contextoverflow.org/agrees-with-everything/disaggregate-before-agreeing/)
+- [is the user actually right](https://contextoverflow.org/agrees-with-everything/is-the-user-actually-right/)
+- [reflexive agreement](https://contextoverflow.org/agrees-with-everything/reflexive-agreement/)
+
+### bloated answers
+- [attention filtering](https://contextoverflow.org/bloated-answers/attention-filtering/)
+- [eloquence as evasion](https://contextoverflow.org/bloated-answers/eloquence-as-evasion/)
+- [smallest working answer](https://contextoverflow.org/bloated-answers/smallest-working-answer/)
+
+### confidently wrong
+- [declared success without proof](https://contextoverflow.org/confidently-wrong/declared-success-without-proof/)
+- [ground or label](https://contextoverflow.org/confidently-wrong/ground-or-label/)
+
+### did more than i asked
+- [reversible by default](https://contextoverflow.org/did-more-than-i-asked/reversible-by-default/)
+- [scope contract](https://contextoverflow.org/did-more-than-i-asked/scope-contract/)
+- [stop at surprise](https://contextoverflow.org/did-more-than-i-asked/stop-at-surprise/)
+
+### doing my thinking
+- [rephrase and respond](https://contextoverflow.org/doing-my-thinking/rephrase-and-respond/)
+- [self ask first](https://contextoverflow.org/doing-my-thinking/self-ask-first/)
+
+### dumber after the update
+- [clean context ab](https://contextoverflow.org/dumber-after-the-update/clean-context-ab/)
+- [personal golden set](https://contextoverflow.org/dumber-after-the-update/personal-golden-set/)
+- [rederive dont patch](https://contextoverflow.org/dumber-after-the-update/rederive-dont-patch/)
+
+### faster than i can review
+- [adversarial cross check](https://contextoverflow.org/faster-than-i-can-review/adversarial-cross-check/)
+- [risk tiered review](https://contextoverflow.org/faster-than-i-can-review/risk-tiered-review/)
+- [sampling audit](https://contextoverflow.org/faster-than-i-can-review/sampling-audit/)
+
+### lost the thread
+- [checkpoint and resume](https://contextoverflow.org/lost-the-thread/checkpoint-and-resume/)
+- [context compression](https://contextoverflow.org/lost-the-thread/context-compression/)
+- [persistent context files](https://contextoverflow.org/lost-the-thread/persistent-context-files/)
+- [recentering](https://contextoverflow.org/lost-the-thread/recentering/)
+- [session handoff](https://contextoverflow.org/lost-the-thread/session-handoff/)
+
+### problem too big
+- [dependency analysis first](https://contextoverflow.org/problem-too-big/dependency-analysis-first/)
+- [mode separation](https://contextoverflow.org/problem-too-big/mode-separation/)
+- [tree of thought branching](https://contextoverflow.org/problem-too-big/tree-of-thought-branching/)
+
+### stalls instead of acting
+- [action first when clear](https://contextoverflow.org/stalls-instead-of-acting/action-first-when-clear/)
+- [caution as evasion loop](https://contextoverflow.org/stalls-instead-of-acting/caution-as-evasion-loop/)
+
+### starting blind
+- [outside view first](https://contextoverflow.org/starting-blind/outside-view-first/)
+- [re read the brief](https://contextoverflow.org/starting-blind/re-read-the-brief/)
+
