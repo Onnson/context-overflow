@@ -1,3 +1,9 @@
+<style>
+  /* Critical: hide the theme's inline SVG icon sprite before the external
+     stylesheet arrives — otherwise the search icon flashes unstyled at
+     default SVG size (the "circle before the page" FOUC). */
+  .d-none { display: none !important; }
+</style>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
